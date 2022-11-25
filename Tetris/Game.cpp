@@ -3,7 +3,8 @@
 
 void Game::loadTextures()
 {
-	texMng.loadTexture("blue",   "Assets/blue.png"); 
+	/*texture.loadFromFile("Assets/blue.png");*/
+	texMng.loadTexture("blue", "Assets/blue.png");
 	texMng.loadTexture("yellow", "Assets/yellow.png");
 	texMng.loadTexture("orange", "Assets/orange.png");
 	texMng.loadTexture("green",  "Assets/green.png");
@@ -29,7 +30,7 @@ Game::Game()
 {	 
 	loadTextures(); 
 	font.loadFromFile("Assets/impact.ttf");
-
+	
 	window.setMouseCursorVisible(false); 
 	board = new Board();
 	gameState = new GameStateStart(this);

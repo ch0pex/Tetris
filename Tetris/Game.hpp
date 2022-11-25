@@ -13,7 +13,7 @@ class Game
 private: 
 	void loadTextures();
 public:
-	TextureManager texMng; 
+	TextureManager texMng;  
 	sf::RenderWindow window; 
 	sf::Font font; 
 
