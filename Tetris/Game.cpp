@@ -29,7 +29,7 @@ void Game::gameLoop() {
 Game::Game()
 {	 
 	loadTextures(); 
-	font.loadFromFile("Assets/impact.ttf");
+	
 	
 	window.setMouseCursorVisible(false); 
 	board = new Board();

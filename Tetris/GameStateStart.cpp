@@ -1,11 +1,8 @@
 #include "GameStateStart.hpp"
 #include "GameStatePlaying.hpp"
+#include "Shapes/shape.hpp"
 
-
-void GameStateStart::Draw() {
-	game->window.draw(title); 
-	game->window.draw(start); 
-	game->window.draw(exit); 
+void GameStateStart::Draw() { 
 	game->board->draw(game->window); 
 }
 
@@ -42,23 +39,13 @@ void GameStateStart::Update() {
 	return; 
 }
 
+
+
+
  
 GameStateStart::GameStateStart(Game* game) {
-	this->game = game; 
-	currentOption = 1; 
-	title.setCharacterSize(70); 
-	title.setFont(game->font); 
-	title.setString("Tetris"); 
-	title.setPosition(sf::Vector2f(560, 400)); 
-	start.setCharacterSize(30); 
-	start.setFont(game->font);
-	start.setFillColor(sf::Color::Yellow); 
-	start.setString("Start"); 
-	start.setPosition(sf::Vector2f(605, 510)); 
-	exit.setCharacterSize(30);
-	exit.setFont(game->font);
-	exit.setString("Exit");
-	exit.setPosition(sf::Vector2f(615, 560));
+	this->game = game;
+	currentOption = 1;
 }
 
 

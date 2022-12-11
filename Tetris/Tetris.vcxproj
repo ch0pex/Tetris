@@ -138,8 +138,8 @@
     <ClCompile Include="GameStatePlaying.cpp" />
     <ClCompile Include="GameStateStart.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Managers.cpp" />
     <ClCompile Include="Shapes\Shape.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.hpp" />
@@ -147,8 +147,12 @@
     <ClInclude Include="GameState.hpp" />
     <ClInclude Include="GameStatePlaying.hpp" />
     <ClInclude Include="GameStateStart.hpp" />
+    <ClInclude Include="Managers.hpp" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Shapes\Shape.hpp" />
-    <ClInclude Include="TextureManager.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Tetris.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

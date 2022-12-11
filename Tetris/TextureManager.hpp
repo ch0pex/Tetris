@@ -13,8 +13,6 @@ public:
 	
 	void loadTexture(const std::string& name, const std::string& filename); 
 	sf::Texture* getTextureRef(const std::string& name); 
-	TextureManager() {
 
-	}
 };
 

@@ -7,9 +7,7 @@
 class GameStateStart : public GameState
 {
 private: 
-	sf::Text title; 
-	sf::Text start; 
-	sf::Text exit; 
+
 	bool currentOption; 
 public: 
 	virtual void Draw(); 
