@@ -2,10 +2,6 @@
 #include "../SFML-2.5.1/include/SFML/Graphics.hpp"
 
 namespace sh{
-	typedef struct {
-		sf::Vector2i offset;
-		sf::Sprite sprite;
-	} ShapeComponent;
 
 	enum dir {
 		right = 0,
@@ -13,11 +9,20 @@ namespace sh{
 		down,
 	};
 
+	struct ShapeComponent
+	{
+		sf::Sprite sprite;
+		sf::Vector2f offset;
+	};
+
+	
+
 	class Shape
 	{
-	private:
+	protected:
 		std::vector<ShapeComponent> sprites;
 		sf::Vector2f position; 
+		sf::Texture texture; 
 		
 	public:
 		void draw(); 
@@ -29,11 +34,6 @@ namespace sh{
 
 	
 
-	class ShapeComponent
-	{
-	private: 
-		sf::Sprite sprite; 
-		sf::Vector2f offset; 
-	};
+
 
 }

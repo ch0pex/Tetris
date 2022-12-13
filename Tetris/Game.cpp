@@ -1,6 +1,5 @@
 #include "game.hpp"
-#include "GameStateStart.hpp"
-
+#include "States/GameStateStart.hpp"
 void Game::loadTextures()
 {
 	/*texture.loadFromFile("Assets/blue.png");*/
@@ -29,10 +28,8 @@ void Game::gameLoop() {
 Game::Game()
 {	 
 	loadTextures(); 
-	
-	
 	window.setMouseCursorVisible(false); 
-	board = new Board();
+	Ui = new UserInterface();
 	gameState = new GameStateStart(this);
 	window.create(sf::VideoMode(800, 1000), "Tetris", sf::Style::None);
 	window.setFramerateLimit(60); 

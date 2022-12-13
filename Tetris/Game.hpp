@@ -1,26 +1,26 @@
 #pragma once
 #include <iostream>
 #include "SFML-2.5.1/include/SFMl/Graphics.hpp"
-#include "GameState.hpp"
+#include "States/GameState.hpp"
+#include "UserInterface.hpp"
+#include "TextureManager.hpp"	
 #include "Board.hpp"
-#include "Managers.hpp"	
 
 
 class GameState; 
-
+class Board;
 
 class Game
 {
 private: 
 	void loadTextures();
 public:
-	mn::TextureManager texMng;  
-	mn::ShapeManager shMng; 
+	TextureManager texMng;  
 	sf::RenderWindow window; 
  
-
-	GameState* gameState;
 	Board* board;
+	GameState* gameState;
+	UserInterface* Ui;
 
 	void gameLoop();
 

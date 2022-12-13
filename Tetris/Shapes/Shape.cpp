@@ -15,6 +15,14 @@ void sh::Shape::move(enum sh::dir direction)
 	}
 }
 
+void sh::Shape::draw()
+{
+}
+
 void sh::Shape::Update() {
 
+}
+
+void sh::Shape::rotateShape()
+{
 }

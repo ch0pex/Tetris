@@ -1,15 +1,12 @@
 #pragma once
 #include "GameState.hpp"
-#include "Board.hpp"
-#include "Shapes/Shape.hpp"
+#include "../Shapes/Shape.hpp"
+#include "../Board.hpp"
 #include <list>
 #include <iostream>
 
 class GameStatePlaying : public GameState
 {
-private: 
-	std::list<sh::Shape> shapes; 
-
 
 public: 
 	virtual void Draw();

@@ -21,19 +21,28 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameStateStart.cpp">
+    <ClCompile Include="States\GameStateStart.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GameStatePlaying.cpp">
+    <ClCompile Include="States\GameStatePlaying.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shapes\Shape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserInterface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Managers.cpp">
+    <ClCompile Include="Shapes\BlueShape.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shapes\YellowShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -41,25 +50,34 @@
     <ClInclude Include="Game.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameState.hpp">
+    <ClInclude Include="States\GameState.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameStateStart.hpp">
+    <ClInclude Include="States\GameStateStart.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="GameStatePlaying.hpp">
+    <ClInclude Include="States\GameStatePlaying.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shapes\Shape.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Board.hpp">
+    <ClInclude Include="UserInterface.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Managers.hpp">
+    <ClInclude Include="Board.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\BlueShape.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\YellowShape.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Shapes\Shapes.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

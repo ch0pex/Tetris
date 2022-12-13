@@ -1,20 +1,25 @@
 #pragma once
 #include "SFML-2.5.1/include/SFML/Graphics.hpp"
-#include "Shapes/Shape.hpp"
+#include "Shapes/Shapes.hpp"
+#include "Game.hpp"
 
+class Game; 
 
 class Board
 {
 private: 
-	sf::Text title;
-	sf::Text start;
-	sf::Text exit;
-	sf::Vertex contours[7][2];
-	sf::Font font;
-	bool currentOption; 
+	Game* game;
 
+	sh::Shape* genNextShape(); 
+	sh::Shape* nextShape; 
+	sh::ShapeComponent* grid[10][20];
+
+	
 public: 
-	void draw(sf::RenderWindow& window);
-	Board(); 
+	Board(Game* game); 
+	void Update(); 
+	void draw();
+	sh::Shape* currentShape;
+
 };
 

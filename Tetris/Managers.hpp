@@ -1,9 +1,12 @@
 #include "SFML-2.5.1/include/SFML/Graphics.hpp"
 #include <map>
 #include <string>
-#include "Shapes/Shape.hpp"
+#include "Shapes/Shapes.hpp"
+
 
 namespace mn {
+
+
 	class TextureManager
 	{
 	private:
@@ -14,15 +17,4 @@ namespace mn {
 		sf::Texture* getTextureRef(const std::string& name);
 
 	};
-
-	class ShapeManager {
-		std::map<std::string, sh::Shape*> shapes; 
-
-	public: 
-		void loadShapes();
-		sh::Shape getRandomShape(); 
-	};
-
-
-
 }

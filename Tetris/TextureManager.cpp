@@ -1,8 +1,6 @@
-#include "Managers.hpp"
 #include "TextureManager.hpp"
 #include <iostream>
 #include<windows.h> 
-
 
 
 void TextureManager::loadTexture(const std::string& name, const std::string& filename) {
@@ -17,6 +15,3 @@ sf::Texture* TextureManager::getTextureRef(const std::string& name) {
 }
 
 
-void loadShapes() {
-
-}
