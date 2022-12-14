@@ -25,7 +25,7 @@ namespace sh{
 		sf::Texture texture; 
 		
 	public:
-		void draw(); 
+		void draw(sf::RenderWindow& window);
 		void Update(); 
 		bool inContact; 
 		virtual void rotateShape();

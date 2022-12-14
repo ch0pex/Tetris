@@ -148,6 +148,7 @@
     <ClInclude Include="Shapes\Shapes.hpp" />
     <ClInclude Include="Shapes\BlueShape.hpp" />
     <ClInclude Include="Board.hpp" />
+    <ClInclude Include="TextureManager.hpp" />
     <ClInclude Include="UserInterface.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="States\GameState.hpp" />

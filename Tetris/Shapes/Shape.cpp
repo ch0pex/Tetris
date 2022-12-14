@@ -15,11 +15,17 @@ void sh::Shape::move(enum sh::dir direction)
 	}
 }
 
-void sh::Shape::draw()
+void sh::Shape::draw(sf::RenderWindow& window)
 {
+	for (auto& sprite : sprites) {
+		window.draw(sprite.sprite); 
+	}
 }
 
 void sh::Shape::Update() {
+	for (auto& sprite : sprites) {
+		sprite.sprite.setPosition(position + sprite.offset);
+	}
 
 }
 
