@@ -1,9 +1,9 @@
 #include "YellowShape.hpp"
 
 
-sh::YellowShape::YellowShape(sf::Texture* texture)
+sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position)
 {
-	position = sf::Vector2f(550, 150);
+	//position = sf::Vector2f(550, 150);
 	
 	struct sh::ShapeComponent comp1; 
 	struct sh::ShapeComponent comp2;

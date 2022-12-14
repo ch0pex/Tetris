@@ -10,7 +10,7 @@ sh::Shape* Board::genNextShape() {
 	case 0:
 		return new sh::BlueShape(game->texMng.getTextureRef("blue"));
 	case 1:
-		return new sh::YellowShape(game->texMng.getTextureRef("yellow"));
+		return new sh::YellowShape(game->texMng.getTextureRef("yellow"), sf::Vector2f(550, 150));
 	}
 	return new sh::BlueShape(game->texMng.getTextureRef("blue")); 
 
@@ -31,6 +31,13 @@ void Board::draw()
 {
 	currentShape->draw(game->window);
 	nextShape->draw(game->window);
+
+	for (size_t i = 0; i < 200; i++)
+	{
+		shapes.at(i)->draw(game->window);
+	}
+	
+
 	/*for (auto& row : grid) {
 		for (auto& block : row) {
 			game->window.draw(block->sprite); 
@@ -40,6 +47,14 @@ void Board::draw()
 
 Board::Board(Game* game) {
 	this->game = game; 
-	nextShape = new sh::YellowShape(game->texMng.getTextureRef("yellow"));
-	currentShape = new sh::YellowShape(game->texMng.getTextureRef("yellow"));
+	nextShape = new sh::YellowShape(game->texMng.getTextureRef("yellow"),sf::Vector2f(550,150));
+	currentShape = new sh::YellowShape(game->texMng.getTextureRef("yellow"), sf::Vector2f(200, 0));
+	for (size_t j = 0; j < 20; j++) {
+		for (size_t i = 0; i < 10; i++)
+		{
+			shapes.push_back(new sh::YellowShape(game->texMng.getTextureRef("yellow"), sf::Vector2f(50 * i, j*50)));
+		}
+	}
+	
+
 }

@@ -12,8 +12,8 @@ private:
 
 	sh::Shape* genNextShape(); 
 	sh::Shape* nextShape; 
-	sh::ShapeComponent* grid[10][20];
-
+	sh::ShapeComponent* grid[20][40];
+	std::vector<sh::Shape*> shapes; 
 	
 public: 
 	Board(Game* game); 
