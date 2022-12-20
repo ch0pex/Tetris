@@ -7,33 +7,34 @@ namespace sh{
 		right = 0,
 		left,
 		down,
+		up
 	};
 
-	struct ShapeComponent
+	class ShapeComponent
 	{
+	public:
+		ShapeComponent(); 
 		sf::Sprite sprite;
 		sf::Vector2f offset;
+		bool checkColision(sf::Vector2f position, sh::ShapeComponent* grid[10][20]);
 	};
 
-	
 
 	class Shape
 	{
 	protected:
-		std::vector<ShapeComponent> sprites;
+		std::vector<ShapeComponent*> components;
 		sf::Vector2f position; 
 		sf::Texture texture; 
 		
 	public:
 		void draw(sf::RenderWindow& window);
-		void Update(); 
+		void Update(sh::ShapeComponent* grid[10][20]);
 		bool inContact; 
 		virtual void rotateShape();
+		void initPos(); 
 		void move(enum dir);
+		std::vector<sh::ShapeComponent*> getComponents();
+		sf::Vector2f getPos(); 
 	};
-
-	
-
-
-
 }

@@ -5,7 +5,7 @@ namespace sh {
 	class YellowShape : public Shape
 	{
 	public:
-		YellowShape(sf::Texture* texture); 
+		YellowShape(sf::Texture* texture, sf::Vector2f position);
 	};
 
 
