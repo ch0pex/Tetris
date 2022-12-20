@@ -16,13 +16,15 @@ void GameStatePlaying::HandleInput()
 	sf::Event event; 
 	while (game->window.pollEvent(event))
 	{
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) game->window.close();
 		//Shape Movement
+		if (game->board->currentShape->inContact) continue; 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))      {}
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))     {}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))  game->board->currentShape->move(sh::dir::down); 
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  game->board->currentShape->move(sh::dir::left); 
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) game->board->currentShape->move(sh::dir::right);
-		else if(sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) game->window.close();
+		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))	  {}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))  game->board->currentShape->move(sh::dir::down); 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  game->board->currentShape->move(sh::dir::left); 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) game->board->currentShape->move(sh::dir::right);
+		
 	}
 }
 
