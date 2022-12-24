@@ -21,7 +21,7 @@ void GameStatePlaying::HandleInput()
 		if (game->board->currentShape->contact[sh::dir::down]) continue;
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))  {}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))	  {}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))  game->board->currentShape->move(sh::dir::down); 
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down)) { std::cout << "pabajo" << std::endl; game->board->currentShape->move(sh::dir::down); }
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  game->board->currentShape->move(sh::dir::left); 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) game->board->currentShape->move(sh::dir::right);
 		

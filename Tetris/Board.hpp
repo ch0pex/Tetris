@@ -13,7 +13,6 @@ private:
 	sh::Shape* nextShape; 
 	sh::ShapeComponent* grid[10][20] = {nullptr};
 	std::vector<sh::Shape*> shapes;
-	std::thread* fixedUpdate; 
 
 	sh::Shape* genNextShape(); 
 	void shapeToGrid(sh::Shape* currentShape);

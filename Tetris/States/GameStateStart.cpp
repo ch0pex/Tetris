@@ -18,7 +18,8 @@ void GameStateStart::HandleInput() {
 		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) {
 			game->Ui->setOption(1);
 		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Enter)) {
+
+		else if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Enter) {
 			if (game->Ui->getOption()) {
 				game->Ui->state = UiState::playing; 
 				game->gameState = new GameStatePlaying(game);
@@ -38,6 +39,7 @@ void GameStateStart::Update() {
 
  
 GameStateStart::GameStateStart(Game* game) {
+	std::cout << "holastart" << std::endl;
 	this->game = game;
 	currentOption = 1;
 }

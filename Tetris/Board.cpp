@@ -1,5 +1,6 @@
 #include "Board.hpp"
 #include "Shapes/Shapes.hpp"
+#include <thread>
 
 
 
@@ -34,12 +35,12 @@ void Board::gravity() {
 	std::chrono::microseconds time(700*1000);
 	std::chrono::microseconds speedUp(300);
 	std::chrono::microseconds maxSpeed(50*1000);
-
+	int x = 0; 
 	while (true) {
-		if (!currentShape->contact[sh::dir::down])
-			currentShape->move(sh::dir::down); 
+		std::cout << ++x << std::endl; 
+		currentShape->move(sh::dir::down); 
 		std::this_thread::sleep_for(time);
-	 
+		
 
 	}
 
@@ -76,6 +77,9 @@ Board::Board(Game* game) {
 	this->game = game; 
 	nextShape = genNextShape(); 
 	currentShape = genNextShape(); 
-	currentShape->initPos(); 	
-	fixedUpdate = new std::thread([this] {gravity();});
+	currentShape->initPos(); 
+	//thread with gravity func
+	new std::thread(&Board::gravity, this);
+
 }
+	

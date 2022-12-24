@@ -36,6 +36,7 @@ void sh::Shape::move(enum sh::dir direction)
 		break;
 	case up: 
 		position += sf::Vector2f(0, -50); 
+		break;
 	default:
 		break;
 	}
