@@ -16,6 +16,7 @@ sh::Shape* Board::genNextShape() {
 
 }
 
+
 void Board::shapeToGrid(sh::Shape* currentShape) 
 {
 	int x; 
@@ -29,12 +30,24 @@ void Board::shapeToGrid(sh::Shape* currentShape)
 } 
 
 
+void Board::gravity() {
+	std::chrono::milliseconds time(500);
+	std::chrono::milliseconds speedUp(50);
+	std::chrono::milliseconds maxSpeed(50);
 
+	while (true) {
+		if (!currentShape->inContact)
+			currentShape->move(sh::down); 
+		std::this_thread::sleep_for(time);
+		if (time > maxSpeed * 2) time -= speedUp; 
+
+	}
+
+}
 
 
 void Board::Update()
 {
-	
 	std::cout << currentShape->inContact << std::endl; 
 	if (currentShape->inContact) {
 		shapeToGrid(currentShape);
@@ -43,13 +56,11 @@ void Board::Update()
 		nextShape = genNextShape();
 	}
 	currentShape->Update(grid);
-;
 }
+
 
 void Board::draw()
 {
-
-
 	for (auto& row : grid) {
 		for (auto& block : row) {
 			if(block != nullptr)
@@ -60,10 +71,11 @@ void Board::draw()
 	nextShape->draw(game->window);
 }
 
+
 Board::Board(Game* game) {
 	this->game = game; 
 	nextShape = genNextShape(); 
 	currentShape = genNextShape(); 
 	currentShape->initPos(); 	
-
+	fixedUpdate = new std::thread([this] {gravity();});
 }

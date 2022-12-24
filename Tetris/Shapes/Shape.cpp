@@ -1,8 +1,10 @@
 #include "Shape.hpp"
+#include <iostream>
 
 sh::ShapeComponent::ShapeComponent()
 {
 }
+
 
 bool sh::ShapeComponent::checkColision(sf::Vector2f position, sh::ShapeComponent* grid[10][20])
 {
@@ -12,8 +14,6 @@ bool sh::ShapeComponent::checkColision(sf::Vector2f position, sh::ShapeComponent
 	if (grid[x/50][y/50 + 1] != nullptr) return true;
 	return false; 
 }
-
-
 
 
 void sh::Shape::move(enum sh::dir direction)
@@ -39,12 +39,14 @@ void sh::Shape::move(enum sh::dir direction)
 	}
 }
 
+
 void sh::Shape::draw(sf::RenderWindow& window)
 {
 	for (auto* component : components) {
 		window.draw(component->sprite);
 	}
 }
+
 
 void sh::Shape::Update(sh::ShapeComponent* grid[10][20])
  {
@@ -53,8 +55,8 @@ void sh::Shape::Update(sh::ShapeComponent* grid[10][20])
 			inContact = true; 
 		component->sprite.setPosition(position + component->offset);
 	}
-
 }
+
 
 
 
@@ -67,12 +69,21 @@ std::vector<sh::ShapeComponent*> sh::Shape::getComponents() {
 	return components;
 }
 
+
 sf::Vector2f sh::Shape::getPos() 
 {
 	return position; 
 }
 
+
 void sh::Shape::initPos()
 {
 	position = sf::Vector2f(250, 0); 
+}
+
+
+sh::Shape::Shape() {
+	
+	inContact = false; 
+	
 }

@@ -19,7 +19,7 @@ void GameStatePlaying::HandleInput()
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) game->window.close();
 		//Shape Movement
 		if (game->board->currentShape->inContact) continue; 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))      {}
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))  {}
 		if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))	  {}
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))  game->board->currentShape->move(sh::dir::down); 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))  game->board->currentShape->move(sh::dir::left); 

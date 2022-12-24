@@ -1,9 +1,8 @@
 #include "YellowShape.hpp"
 
 
-sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position)
-{
-	inContact = false; 
+sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shape()
+{ 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp3 = new sh::ShapeComponent();

@@ -1,5 +1,6 @@
 #pragma once
 #include "../SFML-2.5.1/include/SFML/Graphics.hpp"
+#include <thread>
 
 namespace sh{
 
@@ -25,7 +26,9 @@ namespace sh{
 	protected:
 		std::vector<ShapeComponent*> components;
 		sf::Vector2f position; 
-		sf::Texture texture; 
+		sf::Texture texture;
+		Shape(); 
+		
 		
 	public:
 		void draw(sf::RenderWindow& window);

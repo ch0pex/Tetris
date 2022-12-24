@@ -10,12 +10,14 @@ class Board
 private: 
 	Game* game;
 	//sh::Shape* storedShape; 
-	sh::Shape* genNextShape(); 
 	sh::Shape* nextShape; 
 	sh::ShapeComponent* grid[10][20] = {nullptr};
-	std::vector<sh::Shape*> shapes; 
-	void shapeToGrid(sh::Shape* currentShape);
+	std::vector<sh::Shape*> shapes;
+	std::thread* fixedUpdate; 
 
+	sh::Shape* genNextShape(); 
+	void shapeToGrid(sh::Shape* currentShape);
+	void gravity(); 
 
 public: 
 	Board(Game* game); 
