@@ -17,7 +17,7 @@ namespace sh{
 		ShapeComponent(); 
 		sf::Sprite sprite;
 		sf::Vector2f offset;
-		bool checkColision(sf::Vector2f position, sh::ShapeComponent* grid[10][20]);
+		sh::dir checkCollision(sf::Vector2f position, sh::ShapeComponent* grid[10][20]);
 	};
 
 
@@ -33,7 +33,7 @@ namespace sh{
 	public:
 		void draw(sf::RenderWindow& window);
 		void Update(sh::ShapeComponent* grid[10][20]);
-		bool inContact; 
+		std::map<sh::dir,bool> contact; 
 		virtual void rotateShape();
 		void initPos(); 
 		void move(enum dir);

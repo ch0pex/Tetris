@@ -31,15 +31,15 @@ void Board::shapeToGrid(sh::Shape* currentShape)
 
 
 void Board::gravity() {
-	std::chrono::milliseconds time(500);
-	std::chrono::milliseconds speedUp(50);
-	std::chrono::milliseconds maxSpeed(50);
+	std::chrono::microseconds time(700*1000);
+	std::chrono::microseconds speedUp(300);
+	std::chrono::microseconds maxSpeed(50*1000);
 
 	while (true) {
-		if (!currentShape->inContact)
-			currentShape->move(sh::down); 
+		if (!currentShape->contact[sh::dir::down])
+			currentShape->move(sh::dir::down); 
 		std::this_thread::sleep_for(time);
-		if (time > maxSpeed * 2) time -= speedUp; 
+	 
 
 	}
 
@@ -48,8 +48,8 @@ void Board::gravity() {
 
 void Board::Update()
 {
-	std::cout << currentShape->inContact << std::endl; 
-	if (currentShape->inContact) {
+
+	if (currentShape->contact[sh::dir::down]) {
 		shapeToGrid(currentShape);
 		currentShape = nextShape;
 		currentShape->initPos();
