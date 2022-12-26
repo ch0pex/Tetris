@@ -17,7 +17,8 @@ private:
 	sh::Shape* genNextShape(); 
 	void shapeToGrid(sh::Shape* currentShape);
 	void gravity(); 
-
+	void checkPlaced(); 
+	void deleteRow(int y);
 public: 
 	Board(Game* game); 
 	void Update(); 

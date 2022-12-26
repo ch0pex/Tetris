@@ -1,5 +1,6 @@
 #include "game.hpp"
 #include "States/GameStateStart.hpp"
+#include <Windows.h>
 void Game::loadTextures()
 {
 	/*texture.loadFromFile("Assets/blue.png");*/
@@ -20,7 +21,8 @@ void Game::gameLoop() {
 		gameState->Update();               // GameState Update 
 		window.clear(sf::Color::Black);    // clear buffer 
 		gameState->Draw();                 // draw 
-		window.display();                  // display
+		window.display(); 
+		// display
 	}
 }
 

@@ -3,12 +3,10 @@
 #include "../SFML-2.5.1/include/SFML/Graphics.hpp"	
 
 namespace sh {
-    class BlueShape : public Shape
+    class CianShape : public Shape
     {
-
     public: 
-        BlueShape(sf::Texture* texture);
-
+        CianShape(sf::Texture* texture, sf::Vector2f position);
     };
 }
 

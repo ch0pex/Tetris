@@ -36,4 +36,8 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shap
 
 }
 
+void sh::YellowShape::Update(sh::ShapeComponent* grid[10][20]) : Shape::Update(grid)
+{
+}
+
 

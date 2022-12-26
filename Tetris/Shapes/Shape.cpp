@@ -6,15 +6,14 @@ sh::ShapeComponent::ShapeComponent()
 }
 
 
-sh::dir sh::ShapeComponent::checkCollision(sf::Vector2f position, sh::ShapeComponent* grid[10][20])
+void sh::ShapeComponent::checkCollision(sf::Vector2f position, sh::ShapeComponent* grid[10][20], std::map<sh::dir,bool>& contacts)
 {
 	int x = offset.x + position.x; 
 	int y = offset.y + position.y;
-	if (y == 950) return sh::dir::down;
-	if (grid[x/50][y/50 + 1] != nullptr) return sh::dir::down;
-	if (grid[x / 50 - 1][y / 50] != nullptr) return sh::dir::left; 
-	if (grid[x / 50 + 1][y / 50] != nullptr) return sh::dir::right; 
-	return sh::dir::up; 
+	if (grid[x/50][y/50 + 1] != nullptr || y == 950) contacts[sh::dir::down] = true;
+	if (grid[x / 50 - 1][y / 50] != nullptr) contacts[sh::dir::left] = true;
+	if (grid[x / 50 + 1][y / 50] != nullptr) contacts[sh::dir::right] = true;
+	
 }
 
 
@@ -23,15 +22,15 @@ void sh::Shape::move(enum sh::dir direction)
 	switch (direction)
 	{
 	case right:
-		if(position.x < 400 && !contact[sh::dir::right])
+		if(!contact[sh::dir::right])
 			position += sf::Vector2f(50, 0);
 		break; 
 	case left:
-		if (position.x > 0 && !contact[sh::dir::left])
+		if (!contact[sh::dir::left])
 			position += sf::Vector2f(-50, 0);
 		break;
 	case down: 
-		if (position.y < 900)
+		if(!contact[sh::dir::down])
 			position += sf::Vector2f(0, 50);
 		break;
 	case up: 
@@ -53,29 +52,20 @@ void sh::Shape::draw(sf::RenderWindow& window)
 
 void sh::Shape::Update(sh::ShapeComponent* grid[10][20])
  {
-	contact[sh::dir::left] = false;
-	contact[sh::dir::right] = false;
+	int x = components.at(0)->offset.x + position.x;
+	int y = components.at(0)->offset.y + position.y;
+	//std::cout << x / 50 << ", " << y / 50 << std::endl;
+	//std::cout << contact[sh::dir::down] << std::endl;
+	//std::cout << contact[sh::dir::left] << std::endl;
+	//std::cout << contact[sh::dir::right] << std::endl;
+	contact[sh::dir::down] = false; 
+	contact[sh::dir::left] = false; 
+	contact[sh::dir::right] = false; 
 	for (auto* component : components) {
-		sh::dir collision = component->checkCollision(position, grid); 
-		switch (collision)
-		{
-		case sh::right:
-			contact[sh::dir::right] = true; 
-			break;
-		case sh::left:
-			contact[sh::dir::left] = true; 
-			break;
-		case sh::down:
-			contact[sh::dir::down] = true; 
-			break;
-		default:
-			break;
-		}
+		component->checkCollision(position, grid, contact);
 		component->sprite.setPosition(position + component->offset);
 	}
 }
-
-
 
 
 void sh::Shape::rotateShape()
@@ -101,7 +91,7 @@ void sh::Shape::initPos()
 
 
 sh::Shape::Shape() {
-	
+	placed = false; 
 	contact[sh::dir::down] = false; 
 	contact[sh::dir::left] = false; 
 	contact[sh::dir::right] = false; 

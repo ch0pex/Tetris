@@ -39,7 +39,7 @@
     <ClCompile Include="Board.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Shapes\BlueShape.cpp">
+    <ClCompile Include="Shapes\CianShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Shapes\YellowShape.cpp">
@@ -71,7 +71,7 @@
     <ClInclude Include="Board.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Shapes\BlueShape.hpp">
+    <ClInclude Include="Shapes\CianShape.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shapes\YellowShape.hpp">
