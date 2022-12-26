@@ -14,7 +14,6 @@ namespace sh{
 	class ShapeComponent
 	{
 	public:
-		ShapeComponent(); 
 		sf::Sprite sprite;
 		sf::Vector2f offset;
 		void checkCollision(sf::Vector2f position, sh::ShapeComponent* grid[10][20],std::map<sh::dir,bool>& contacs);
@@ -27,7 +26,6 @@ namespace sh{
 		std::vector<ShapeComponent*> components;
 		sf::Vector2f position; 
 		sf::Texture texture;
-	
 		Shape(); 
 		
 		
@@ -36,7 +34,7 @@ namespace sh{
 		void Update(sh::ShapeComponent* grid[10][20]);
 		bool placed;
 		std::map<sh::dir,bool> contact; 
-		virtual void rotateShape();
+		virtual void rotateShape() = 0;
 		void initPos(); 
 		void move(enum dir);
 		std::vector<sh::ShapeComponent*> getComponents();

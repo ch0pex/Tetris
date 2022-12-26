@@ -1,10 +1,6 @@
 #include "Shape.hpp"
 #include <iostream>
 
-sh::ShapeComponent::ShapeComponent()
-{
-}
-
 
 void sh::ShapeComponent::checkCollision(sf::Vector2f position, sh::ShapeComponent* grid[10][20], std::map<sh::dir,bool>& contacts)
 {
@@ -15,6 +11,7 @@ void sh::ShapeComponent::checkCollision(sf::Vector2f position, sh::ShapeComponen
 	if (grid[x / 50 + 1][y / 50] != nullptr) contacts[sh::dir::right] = true;
 	
 }
+
 
 
 void sh::Shape::move(enum sh::dir direction)
@@ -65,11 +62,6 @@ void sh::Shape::Update(sh::ShapeComponent* grid[10][20])
 		component->checkCollision(position, grid, contact);
 		component->sprite.setPosition(position + component->offset);
 	}
-}
-
-
-void sh::Shape::rotateShape()
-{
 }
 
 

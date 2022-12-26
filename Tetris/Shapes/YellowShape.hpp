@@ -6,7 +6,7 @@ namespace sh {
 	{
 		
 	public:
-		void Update(); 
+		virtual void rotateShape() override;
 		YellowShape(sf::Texture* texture, sf::Vector2f position);
 	};
 
