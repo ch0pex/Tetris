@@ -5,7 +5,7 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shap
 { 
 	
 	limits[0].first = 0; 
-	limits[0].second = 900; 
+	limits[0].second = 400; 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp3 = new sh::ShapeComponent();
@@ -39,7 +39,7 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shap
 
 }
 
-void sh::YellowShape::rotate() 
+void sh::YellowShape::rotate(sh::ShapeComponent* grid[10][20])
 {
 	return; //YellowShape ain't rotate
 }

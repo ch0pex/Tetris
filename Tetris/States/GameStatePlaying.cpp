@@ -24,7 +24,7 @@ void GameStatePlaying::HandleInput()
 		//Shape Movement
 		if (game->board->currentShape == nullptr) continue; 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))  {}
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) { game->board->currentShape->rotate(); }
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up)) { game->board->currentShape->rotate(game->board->grid); }
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down) && !game->board->currentShape->contact[sh::dir::down]) {
 			game->board->currentShape->move(sh::dir::down);
 		}

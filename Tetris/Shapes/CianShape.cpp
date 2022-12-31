@@ -4,9 +4,9 @@ sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 {
 
 	limits[0].first = 0; 
-	limits[0].second = 950; 
+	limits[0].second = 450; 
 	limits[1].first = 0; 
-	limits[1].second = 800;
+	limits[1].second = 300;
 	rotation = 0; 
 
 
@@ -48,22 +48,36 @@ sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 }
 
 
-/*
-bool checkPosition() {
-	if (grid[(int)position.x / 50][(int)position.y / 50 + 1] != nullptr || (int) position.y == 950) return true; 
-	if (grid[(int)position.x / 50 - 1][(int)position.y / 50] != nullptr) return true; 
-	if (grid[(int)position.x / 50 + 1][(int)position.y / 50] != nullptr) return true; 
-	return false; 
-}
-*/
-void sh::CianShape::rotate() {
+
+void sh::CianShape::rotate(sh::ShapeComponent* grid[10][20]) {
+	sf::Vector2f offsetsVer[4] = {sf::Vector2f(0,0), sf::Vector2f(0, 50), sf::Vector2f(0, 100), sf::Vector2f(0, 150)};
+	sf::Vector2f offsetsHor[4] = { sf::Vector2f(0, 0), sf::Vector2f(0, 50), sf::Vector2f(100, 0), sf::Vector2f(150, 0)};
+
 	if (rotation) {
+		for (sf::Vector2f offset : offsetsVer) {
+			if (position.x + offset.x < 0 || position.x + offset.x >= 500)
+				return;
+			if (position.y + offset.y > 900)
+				return;
+			if (grid[((int)position.x + (int)offset.x) / 50][((int)position.y + (int)offset.y) / 50] != nullptr)
+				return;
+		}
 		components[0]->offset = sf::Vector2f(0, 0);
 		components[1]->offset = sf::Vector2f(0, 50);
 		components[2]->offset = sf::Vector2f(0, 100);
 		components[3]->offset = sf::Vector2f(0, 150);
 	}
 	else {
+		for (sf::Vector2f offset : offsetsHor) {
+			if (position.x + offset.x < 0 || position.x + offset.x > 450)
+				return;
+			if (position.y + offset.y > 1000)
+				return;
+			if (grid[((int)position.x + (int)offset.x) / 50][((int)position.y + (int)offset.y) / 50] != nullptr)
+				return;
+			if (grid[((int)position.x / 50) + 1][(int)position.y / 50] != nullptr)
+				return; 
+		}
 		components[0]->offset = sf::Vector2f(0, 0);
 		components[1]->offset = sf::Vector2f(50, 0);
 		components[2]->offset = sf::Vector2f(100, 0);

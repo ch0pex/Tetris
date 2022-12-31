@@ -8,7 +8,7 @@ namespace sh {
 
     public: 
         CianShape(sf::Texture* texture, sf::Vector2f position);
-        void rotate() override;
+        void rotate(sh::ShapeComponent* grid[10][20]) override;
     };
 }
 

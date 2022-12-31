@@ -104,8 +104,8 @@ void Board::Update()
 			deleteRow(row);
 	}
 
-
 	currentShape->Update(grid);
+	std::cout << currentShape->getPos().x << ", " << currentShape->getPos().y << std::endl;
 }
 
 

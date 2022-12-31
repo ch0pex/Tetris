@@ -43,6 +43,6 @@ namespace sh{
 
 
 		virtual void Update(sh::ShapeComponent* grid[10][20]);
-		virtual void rotate() = 0;
+		virtual void rotate(sh::ShapeComponent* grid[10][20]) = 0;
 	};
 }

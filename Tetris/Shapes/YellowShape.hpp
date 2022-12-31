@@ -6,7 +6,7 @@ namespace sh {
 	{
 	
 	public:
-		void rotate() override;
+		void rotate(sh::ShapeComponent* grid[10][20]) override;
 		YellowShape(sf::Texture* texture, sf::Vector2f position);
 	};
 

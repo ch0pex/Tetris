@@ -14,6 +14,8 @@ void sh::ShapeComponent::checkCollision(sf::Vector2f position, sh::ShapeComponen
 
 
 
+
+
 void sh::Shape::move(enum sh::dir direction)
 {
 	switch (direction)
@@ -49,6 +51,7 @@ void sh::Shape::draw(sf::RenderWindow& window)
 
 void sh::Shape::Update(sh::ShapeComponent* grid[10][20])
  {
+	if (!components.size()) return; 
 	int x = components.at(0)->offset.x + position.x;
 	int y = components.at(0)->offset.y + position.y;
 	//std::cout << x / 50 << ", " << y / 50 << std::endl;

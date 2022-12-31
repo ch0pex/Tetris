@@ -11,7 +11,6 @@ private:
 	Game* game;
 	//sh::Shape* storedShape; 
 	sh::Shape* nextShape; 
-	sh::ShapeComponent* grid[10][20] = {nullptr};
 	std::vector<sh::Shape*> shapes;
 
 	sh::Shape* genNextShape(); 
@@ -20,6 +19,7 @@ private:
 	void checkPlaced(); 
 	void deleteRow(int y);
 public: 
+	sh::ShapeComponent* grid[10][20] = {nullptr};
 	Board(Game* game); 
 	void Update(); 
 	void draw();
