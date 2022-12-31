@@ -5,8 +5,10 @@
 namespace sh {
     class CianShape : public Shape
     {
+
     public: 
         CianShape(sf::Texture* texture, sf::Vector2f position);
+        void rotate() override;
     };
 }
 

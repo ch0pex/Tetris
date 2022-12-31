@@ -23,6 +23,8 @@ namespace sh{
 	class Shape
 	{
 	protected:
+		int rotation; 
+		std::map<int, std::pair<int,int>> limits;
 		std::vector<ShapeComponent*> components;
 		sf::Vector2f position; 
 		sf::Texture texture;
@@ -30,14 +32,17 @@ namespace sh{
 		
 		
 	public:
-		void draw(sf::RenderWindow& window);
-		void Update(sh::ShapeComponent* grid[10][20]);
 		bool placed;
-		std::map<sh::dir,bool> contact; 
-		virtual void rotateShape() = 0;
+		std::map<sh::dir, bool> contact;
+		std::vector<sh::ShapeComponent*> getComponents();
+		sf::Vector2f getPos();
+
+		void draw(sf::RenderWindow& window);
 		void initPos(); 
 		void move(enum dir);
-		std::vector<sh::ShapeComponent*> getComponents();
-		sf::Vector2f getPos(); 
+
+
+		virtual void Update(sh::ShapeComponent* grid[10][20]);
+		virtual void rotate() = 0;
 	};
 }

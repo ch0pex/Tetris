@@ -34,7 +34,7 @@ Game::Game()
 	Ui = new UserInterface();
 	gameState = new GameStateStart(this);
 	window.create(sf::VideoMode(800, 1000), "Tetris", sf::Style::None);
-	window.setFramerateLimit(60); 
+	window.setFramerateLimit(60);
 }
 
 

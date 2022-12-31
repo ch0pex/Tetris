@@ -3,6 +3,9 @@
 
 sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shape()
 { 
+	
+	limits[0].first = 0; 
+	limits[0].second = 900; 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp3 = new sh::ShapeComponent();
@@ -18,7 +21,7 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shap
 	comp2->sprite.setScale(scale);
 	comp3->sprite.setScale(scale);
 	comp4->sprite.setScale(scale);
-
+	 
 	comp1->sprite.setTexture(*texture); 
 	comp2->sprite.setTexture(*texture); 
 	comp3->sprite.setTexture(*texture); 
@@ -36,9 +39,9 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shap
 
 }
 
-void sh::YellowShape::rotateShape() 
+void sh::YellowShape::rotate() 
 {
-
+	return; //YellowShape ain't rotate
 }
 
 

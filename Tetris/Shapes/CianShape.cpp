@@ -2,6 +2,14 @@
 
 sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 {
+
+	limits[0].first = 0; 
+	limits[0].second = 950; 
+	limits[1].first = 0; 
+	limits[1].second = 800;
+	rotation = 0; 
+
+
 	position = sf::Vector2f(600, 300);
 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent;
@@ -36,5 +44,44 @@ sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 	components.push_back(comp2);
 	components.push_back(comp3);
 	components.push_back(comp4);
+
+}
+
+
+/*
+bool checkPosition() {
+	if (grid[(int)position.x / 50][(int)position.y / 50 + 1] != nullptr || (int) position.y == 950) return true; 
+	if (grid[(int)position.x / 50 - 1][(int)position.y / 50] != nullptr) return true; 
+	if (grid[(int)position.x / 50 + 1][(int)position.y / 50] != nullptr) return true; 
+	return false; 
+}
+*/
+void sh::CianShape::rotate() {
+	if (rotation) {
+		components[0]->offset = sf::Vector2f(0, 0);
+		components[1]->offset = sf::Vector2f(0, 50);
+		components[2]->offset = sf::Vector2f(0, 100);
+		components[3]->offset = sf::Vector2f(0, 150);
+	}
+	else {
+		components[0]->offset = sf::Vector2f(0, 0);
+		components[1]->offset = sf::Vector2f(50, 0);
+		components[2]->offset = sf::Vector2f(100, 0);
+		components[3]->offset = sf::Vector2f(150, 0);
+	}
+
+	rotation = !rotation; 
+	sf::Vector2f position0 = components[0]->offset + position;
+	sf::Vector2f position1 = components[1]->offset + position;
+	sf::Vector2f position2 = components[2]->offset + position;
+	sf::Vector2f position3 = components[3]->offset + position;
+
+	
+	components[0]->sprite.setPosition(position0);
+	components[1]->sprite.setPosition(position1);
+	components[2]->sprite.setPosition(position2);
+	components[3]->sprite.setPosition(position3);
+	
+
 
 }
