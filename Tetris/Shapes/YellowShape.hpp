@@ -4,7 +4,9 @@
 namespace sh {
 	class YellowShape : public Shape
 	{
+	
 	public:
+		void rotate(sh::ShapeComponent* grid[10][20]) override;
 		YellowShape(sf::Texture* texture, sf::Vector2f position);
 	};
 

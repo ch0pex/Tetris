@@ -1,9 +1,11 @@
 #include "YellowShape.hpp"
 
 
-sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position)
-{
-	inContact = false; 
+sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shape()
+{ 
+	
+	limits[0].push_back(0); 
+	limits[0].push_back(400);
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp3 = new sh::ShapeComponent();
@@ -19,7 +21,7 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position)
 	comp2->sprite.setScale(scale);
 	comp3->sprite.setScale(scale);
 	comp4->sprite.setScale(scale);
-
+	 
 	comp1->sprite.setTexture(*texture); 
 	comp2->sprite.setTexture(*texture); 
 	comp3->sprite.setTexture(*texture); 
@@ -36,5 +38,11 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position)
 	components.push_back(comp4); 
 
 }
+
+void sh::YellowShape::rotate(sh::ShapeComponent* grid[10][20])
+{
+	return; //YellowShape ain't rotate
+}
+
 
 

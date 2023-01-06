@@ -133,8 +133,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Shapes\BlueShape.cpp" />
+    <ClCompile Include="Shapes\CianShape.cpp" />
     <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Shapes\PurpleShape.cpp" />
     <ClCompile Include="UserInterface.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="States\GameStatePlaying.cpp" />
@@ -145,8 +146,9 @@
     <ClCompile Include="Shapes\YellowShape.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Shapes\PurpleShape.hpp" />
     <ClInclude Include="Shapes\Shapes.hpp" />
-    <ClInclude Include="Shapes\BlueShape.hpp" />
+    <ClInclude Include="Shapes\CianShape.hpp" />
     <ClInclude Include="Board.hpp" />
     <ClInclude Include="TextureManager.hpp" />
     <ClInclude Include="UserInterface.hpp" />
@@ -154,12 +156,8 @@
     <ClInclude Include="States\GameState.hpp" />
     <ClInclude Include="States\GameStatePlaying.hpp" />
     <ClInclude Include="States\GameStateStart.hpp" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="Shapes\Shape.hpp" />
     <ClInclude Include="Shapes\YellowShape.hpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="Tetris.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

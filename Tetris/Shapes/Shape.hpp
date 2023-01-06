@@ -1,5 +1,6 @@
 #pragma once
 #include "../SFML-2.5.1/include/SFML/Graphics.hpp"
+#include <thread>
 
 namespace sh{
 
@@ -13,28 +14,35 @@ namespace sh{
 	class ShapeComponent
 	{
 	public:
-		ShapeComponent(); 
 		sf::Sprite sprite;
 		sf::Vector2f offset;
-		bool checkColision(sf::Vector2f position, sh::ShapeComponent* grid[10][20]);
+		void checkCollision(sf::Vector2f position, sh::ShapeComponent* grid[10][20],std::map<sh::dir,bool>& contacs);
 	};
 
 
 	class Shape
 	{
 	protected:
+		int rotation; 
+		std::map<int, std::vector<int>> limits;
 		std::vector<ShapeComponent*> components;
 		sf::Vector2f position; 
-		sf::Texture texture; 
+		sf::Texture texture;
+		Shape(); 
+		
 		
 	public:
+		bool placed;
+		std::map<sh::dir, bool> contact;
+		std::vector<sh::ShapeComponent*> getComponents();
+		sf::Vector2f getPos();
+
 		void draw(sf::RenderWindow& window);
-		void Update(sh::ShapeComponent* grid[10][20]);
-		bool inContact; 
-		virtual void rotateShape();
 		void initPos(); 
 		void move(enum dir);
-		std::vector<sh::ShapeComponent*> getComponents();
-		sf::Vector2f getPos(); 
+
+
+		virtual void Update(sh::ShapeComponent* grid[10][20]);
+		virtual void rotate(sh::ShapeComponent* grid[10][20]) = 0;
 	};
 }
