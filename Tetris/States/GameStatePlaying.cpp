@@ -13,10 +13,11 @@ void GameStatePlaying::Draw()
 
 void GameStatePlaying::HandleInput()
 {
-	sf::Event event; 
+	sf::Event event;
 	int eventCount = 0; 
 	while (game->window.pollEvent(event))
 	{
+		
 		eventCount += 1; 
 		if (eventCount > 1) return;
 		std::cout << eventCount << std::endl; 

@@ -24,7 +24,7 @@ namespace sh{
 	{
 	protected:
 		int rotation; 
-		std::map<int, std::pair<int,int>> limits;
+		std::map<int, std::vector<int>> limits;
 		std::vector<ShapeComponent*> components;
 		sf::Vector2f position; 
 		sf::Texture texture;

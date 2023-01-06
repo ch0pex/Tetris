@@ -4,8 +4,8 @@
 sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shape()
 { 
 	
-	limits[0].first = 0; 
-	limits[0].second = 400; 
+	limits[0].push_back(0); 
+	limits[0].push_back(400);
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp3 = new sh::ShapeComponent();

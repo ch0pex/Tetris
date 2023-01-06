@@ -21,12 +21,12 @@ void sh::Shape::move(enum sh::dir direction)
 	switch (direction)
 	{
 	case right:
-		if(!contact[sh::dir::right] && position.x < limits[rotation].second)
+		if(!contact[sh::dir::right] && position.x <= limits[rotation].at(1) - 50)
 			position += sf::Vector2f(50, 0);
 		break; 
 	case left:
-		if (!contact[sh::dir::left] && position.x > limits[rotation].first)
-			position += sf::Vector2f(-50, 0);
+		if (!contact[sh::dir::left] && position.x >= limits[rotation].at(0) + 50)
+			position += sf::Vector2f(-50, 0) ;
 		break;
 	case down: 
 		if(!contact[sh::dir::down] )
@@ -86,6 +86,7 @@ void sh::Shape::initPos()
 
 
 sh::Shape::Shape() {
+	rotation = 0; 
 	placed = false; 
 	contact[sh::dir::down] = false; 
 	contact[sh::dir::left] = false; 

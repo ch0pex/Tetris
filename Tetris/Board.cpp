@@ -7,13 +7,15 @@
 
 sh::Shape* Board::genNextShape() {
 	srand(time(NULL));
-	int choice = rand() % 3;
+	int choice = 3;
 	std::cout << choice << std::endl;
 	switch (choice) {
 	case 1:
 		return new sh::CianShape(game->texMng.getTextureRef("cian"), sf::Vector2f(550, 150));
 	case 2:
 		return new sh::YellowShape(game->texMng.getTextureRef("yellow"), sf::Vector2f(550, 150));
+	case 3: 
+		return new sh::PurpleShape(game->texMng.getTextureRef("purple"), sf::Vector2f(550, 150)); 
 	}
 	return new sh::CianShape(game->texMng.getTextureRef("cian"), sf::Vector2f(550, 150));
 
@@ -27,9 +29,10 @@ void Board::shapeToGrid(sh::Shape* currentShape)
 	for (sh::ShapeComponent* component : currentShape->getComponents()) {
 		x = (component->offset.x + currentShape->getPos().x) / 50; 
 		y = (component->offset.y + currentShape->getPos().y) / 50;
+		std::cout << x << ", " << y << std::endl; 
 		grid[x][y] = component; 
 	}
-	delete(currentShape); 
+ 	delete(currentShape); 
 } 
 
 
@@ -37,7 +40,8 @@ void Board::gravity() {
 	std::chrono::microseconds time(700*1000);
 	std::chrono::microseconds speedUp(300);
 	std::chrono::microseconds maxSpeed(50*1000);
-	int x = 0; 
+	int x = 0;
+	if (currentShape == nullptr) return; 
 	while (1) {
 		if(!currentShape->contact[sh::dir::down])
 			currentShape->move(sh::dir::down); 
@@ -105,7 +109,7 @@ void Board::Update()
 	}
 
 	currentShape->Update(grid);
-	std::cout << currentShape->getPos().x << ", " << currentShape->getPos().y << std::endl;
+	//std::cout << currentShape->getPos().x << ", " << currentShape->getPos().y << std::endl;
 }
 
 
