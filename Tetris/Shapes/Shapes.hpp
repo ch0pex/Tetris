@@ -9,9 +9,9 @@
 #include "YellowShape.hpp"
 #include "PurpleShape.hpp"
 #include "CianShape.hpp"
-/*
-#include "GrenShape.hpp"
 #include "BlueShape.hpp"
 #include "OrangeShape.hpp"
-*/
+#include "RedShape.hpp"
+#include "GreenShape.hpp"
+
 #endif

@@ -1,21 +1,16 @@
-#include "PurpleShape.hpp"
-#include <iostream>
+#include "RedShape.hpp"
 
-sh::PurpleShape::PurpleShape(sf::Texture* texture, sf::Vector2f position)   
+
+sh::RedShape::RedShape(sf::Texture* texture, sf::Vector2f position)
 {
-	
-	limits[0].push_back(0);
-	limits[0].push_back(400);
-	limits[0].push_back(900);
-	limits[1].push_back(0);
-	limits[1].push_back(400); 
+
+	limits[0].push_back(50);
+	limits[0].push_back(450);
+	limits[0].push_back(950);
+	limits[1].push_back(50);
+	limits[1].push_back(450);
 	limits[1].push_back(950);
-	limits[2].push_back(50); 
-	limits[2].push_back(450); 
-	limits[2].push_back(950);
-	limits[3].push_back(0);
-	limits[3].push_back(400); 
-	limits[3].push_back(1000);
+
 
 
 	position = sf::Vector2f(600, 300);
@@ -50,37 +45,33 @@ sh::PurpleShape::PurpleShape(sf::Texture* texture, sf::Vector2f position)
 	components.push_back(comp2);
 	components.push_back(comp3);
 	components.push_back(comp4);
-	rotation = 0; 
+	rotation = 0;
 }
 
 
-void sh::PurpleShape::rotate(sh::ShapeComponent* grid[10][20]) 
+void sh::RedShape::rotate(sh::ShapeComponent* grid[10][20])
 {
-	if (rotation == 0  && position.x == 0) return; 
-	if (rotation == 2 && position.x == 450) return;
-	rotation = (rotation + 1) % 4;
+	if (rotation == 1 && position.x == 450) return;
+
+	rotation = (rotation + 1) % 2;
 	for (sf::Vector2f offset : _offsets[rotation]) {
 		if (position.y + offset.y > limits[rotation].at(2)) {
-			rotation -= 1; 
-			return; 
+			rotation -= 1;
+			return;
 		}
-			
+		if (grid[((int)position.x + (int)offset.x) / 50][((int)position.y + (int)offset.y) / 50] != nullptr) {
+			rotation -= 1;
+			return;
+		}
 
-		if (grid[((int)position.x + (int)offset.x) / 50][((int)position.y + (int)offset.y) / 50] != nullptr)
-		{
-			rotation -= 1; 
-			return; 
-		}
 	}
 
-	
-	
 	components[0]->offset = _offsets[rotation][0];
 	components[1]->offset = _offsets[rotation][1];
 	components[2]->offset = _offsets[rotation][2];
 	components[3]->offset = _offsets[rotation][3];
- 
-	
+
+
 
 	sf::Vector2f position0 = components[0]->offset + position;
 	sf::Vector2f position1 = components[1]->offset + position;
@@ -92,5 +83,5 @@ void sh::PurpleShape::rotate(sh::ShapeComponent* grid[10][20])
 	components[1]->sprite.setPosition(position1);
 	components[2]->sprite.setPosition(position2);
 	components[3]->sprite.setPosition(position3);
-	
+
 }

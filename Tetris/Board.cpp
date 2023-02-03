@@ -6,8 +6,9 @@
 
 
 sh::Shape* Board::genNextShape() {
+	//int choice = 7; 
 	srand(time(NULL));
-	int choice = 3;
+	int choice = rand() % 8;
 	std::cout << choice << std::endl;
 	switch (choice) {
 	case 1:
@@ -16,6 +17,14 @@ sh::Shape* Board::genNextShape() {
 		return new sh::YellowShape(game->texMng.getTextureRef("yellow"), sf::Vector2f(550, 150));
 	case 3: 
 		return new sh::PurpleShape(game->texMng.getTextureRef("purple"), sf::Vector2f(550, 150)); 
+	case 4: 
+		return new sh::OrangeShape(game->texMng.getTextureRef("orange"), sf::Vector2f(550, 150));
+	case 5: 
+		return  new sh::BlueShape(game->texMng.getTextureRef("blue"), sf::Vector2f(550, 150)); 
+	case 6: 
+		return new sh::GreenShape(game->texMng.getTextureRef("green"), sf::Vector2f(550, 150));
+	case 7: 
+		return new sh::RedShape(game->texMng.getTextureRef("red"), sf::Vector2f(559, 150)); 
 	}
 	return new sh::CianShape(game->texMng.getTextureRef("cian"), sf::Vector2f(550, 150));
 
@@ -27,6 +36,7 @@ void Board::shapeToGrid(sh::Shape* currentShape)
 	int x; 
 	int y; 
 	for (sh::ShapeComponent* component : currentShape->getComponents()) {
+		if (component == nullptr) continue; 
 		x = (component->offset.x + currentShape->getPos().x) / 50; 
 		y = (component->offset.y + currentShape->getPos().y) / 50;
 		std::cout << x << ", " << y << std::endl; 
@@ -50,22 +60,25 @@ void Board::gravity() {
 
 }
 
-void Board::checkPlaced()
+bool Board::checkPlaced()
 {
-	int ticks = 0; 
-	while (1) {
-		if (!currentShape->contact[sh::dir::down]) ticks = 0;
-		else ticks++; 
-		if(ticks == 2) 
-		{
-			shapeToGrid(currentShape);
-			currentShape = nextShape;
-			currentShape->initPos(); 
-			nextShape = genNextShape();
-			ticks = 0;
-		}
-		std::this_thread::sleep_for(std::chrono::milliseconds(700));
+ 
+	std::cout << checkTicks << std::endl; 
+	if (!currentShape->contact[sh::dir::down]) {
+		checkTicks = 0;
+		return false; 
 	}
+	else if (checkTicks > 4000) {
+		checkTicks = 0;
+		return true;
+	}
+	else {
+		checkTicks++;
+		return false; 
+	}
+
+
+	
 }
 
 
@@ -74,7 +87,7 @@ void Board::deleteRow(int y) {
 	{
 		grid[x][y] = nullptr;
 	}
-	for (size_t row = y; row > 0; --row)
+	for (size_t row = y; row > 0; row--)
 	{
 		for(size_t cell = 0; cell < 10; cell++)
 			if (grid[cell][row] != nullptr) {
@@ -107,7 +120,13 @@ void Board::Update()
 		for (int row : rows)
 			deleteRow(row);
 	}
-
+	if (checkPlaced()) {
+		std::cout << "Entro aqui" << std::endl; 
+		shapeToGrid(currentShape);
+		currentShape = nextShape;
+		currentShape->initPos();
+		nextShape = genNextShape();
+	}
 	currentShape->Update(grid);
 	//std::cout << currentShape->getPos().x << ", " << currentShape->getPos().y << std::endl;
 }
@@ -133,7 +152,8 @@ Board::Board(Game* game) {
 	currentShape->initPos(); 
 	//thread with gravity func
 	new std::thread(&Board::gravity, this);
-	new std::thread(&Board::checkPlaced, this);
+	checkTicks = 0; 
+	//new std::thread(&Board::checkPlaced, this);
 
 }
 	

@@ -20,7 +20,6 @@ void GameStatePlaying::HandleInput()
 		
 		eventCount += 1; 
 		if (eventCount > 1) return;
-		std::cout << eventCount << std::endl; 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape)) game->window.close();
 		//Shape Movement
 		if (game->board->currentShape == nullptr) continue; 

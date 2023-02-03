@@ -41,7 +41,7 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shap
 
 void sh::YellowShape::rotate(sh::ShapeComponent* grid[10][20])
 {
-	return; //YellowShape ain't rotate
+	return; //YellowShape ain't rotat
 }
 
 

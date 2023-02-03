@@ -41,9 +41,12 @@ void sh::Shape::move(enum sh::dir direction)
 }
 
 
-void sh::Shape::draw(sf::RenderWindow& window)
+
+void sh::Shape::draw(sf::RenderWindow& window) 
 {
+	
 	for (auto* component : components) {
+		if (component == nullptr) continue; 
 		window.draw(component->sprite);
 	}
 }
@@ -51,7 +54,10 @@ void sh::Shape::draw(sf::RenderWindow& window)
 
 void sh::Shape::Update(sh::ShapeComponent* grid[10][20])
  {
-	if (!components.size()) return; 
+	if (!components.size()) {
+		delete(this); 
+		return;
+	};
 	int x = components.at(0)->offset.x + position.x;
 	int y = components.at(0)->offset.y + position.y;
 	//std::cout << x / 50 << ", " << y / 50 << std::endl;
@@ -62,6 +68,7 @@ void sh::Shape::Update(sh::ShapeComponent* grid[10][20])
 	contact[sh::dir::left] = false; 
 	contact[sh::dir::right] = false; 
 	for (auto* component : components) {
+		if (component == nullptr) continue; 
 		component->checkCollision(position, grid, contact);
 		component->sprite.setPosition(position + component->offset);
 	}

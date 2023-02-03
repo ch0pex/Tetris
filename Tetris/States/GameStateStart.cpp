@@ -39,7 +39,6 @@ void GameStateStart::Update() {
 
  
 GameStateStart::GameStateStart(Game* game) {
-	std::cout << "holastart" << std::endl;
 	this->game = game;
 	currentOption = 1;
 }

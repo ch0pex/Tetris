@@ -22,11 +22,10 @@ void Game::gameLoop() {
 		window.clear(sf::Color::Black);    // clear buffer 
 		gameState->Draw();                 // draw 
 		window.display(); 
-		//Sleep(60); // when set Frame limit not works 
+		// when set Frame limit not works 
 		// display
 	}
 }
-
 
 Game::Game()
 {	 
@@ -35,10 +34,8 @@ Game::Game()
 	Ui = new UserInterface();
 	gameState = new GameStateStart(this);
 	window.create(sf::VideoMode(800, 1000), "Tetris", sf::Style::None);
-	window.setFramerateLimit(60);
-	window.setVerticalSyncEnabled(1); 
+	
 }
-
 
 Game::~Game()
 {

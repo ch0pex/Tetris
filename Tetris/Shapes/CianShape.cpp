@@ -4,10 +4,10 @@ sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 {
 
 	limits[0].push_back(0);
-	limits[0].push_back(500);
+	limits[0].push_back(450);
 	limits[0].push_back(900);
 	limits[1].push_back(0);
-	limits[1].push_back(450);
+	limits[1].push_back(300);
 	limits[1].push_back(1000);
 
 	position = sf::Vector2f(600, 300);

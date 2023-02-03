@@ -12,11 +12,12 @@ private:
 	//sh::Shape* storedShape; 
 	sh::Shape* nextShape; 
 	std::vector<sh::Shape*> shapes;
+	int checkTicks; 
 
 	sh::Shape* genNextShape(); 
 	void shapeToGrid(sh::Shape* currentShape);
 	void gravity(); 
-	void checkPlaced(); 
+	bool checkPlaced(); 
 	void deleteRow(int y);
 public: 
 	sh::ShapeComponent* grid[10][20] = {nullptr};

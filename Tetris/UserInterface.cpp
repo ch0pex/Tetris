@@ -36,8 +36,6 @@ bool UserInterface::getOption()
 }
 
 
-
-
 UserInterface::UserInterface() : _contours{
 		{sf::Vertex(sf::Vector2f(0,0)),     sf::Vertex(sf::Vector2f(0,1000))  },
 		{sf::Vertex(sf::Vector2f(0,0)),     sf::Vertex(sf::Vector2f(500,0))   },
