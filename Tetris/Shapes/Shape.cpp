@@ -2,6 +2,17 @@
 #include <iostream>
 
 
+
+sh::Shape::Shape() {
+	rotation = 0;
+	placed = false;
+	contact[sh::dir::down] = false;
+	contact[sh::dir::left] = false;
+	contact[sh::dir::right] = false;
+
+}
+
+
 void sh::ShapeComponent::checkCollision(sf::Vector2f position, sh::ShapeComponent* grid[10][20], std::map<sh::dir,bool>& contacts)
 {
 	int x = offset.x + position.x; 
@@ -11,9 +22,6 @@ void sh::ShapeComponent::checkCollision(sf::Vector2f position, sh::ShapeComponen
 	if (grid[x / 50 + 1][y / 50] != nullptr) contacts[sh::dir::right] = true;
 	
 }
-
-
-
 
 
 void sh::Shape::move(enum sh::dir direction)
@@ -86,17 +94,11 @@ sf::Vector2f sh::Shape::getPos()
 }
 
 
+
+
 void sh::Shape::initPos()
 {
 	position = sf::Vector2f(250, 0); 
 }
 
 
-sh::Shape::Shape() {
-	rotation = 0; 
-	placed = false; 
-	contact[sh::dir::down] = false; 
-	contact[sh::dir::left] = false; 
-	contact[sh::dir::right] = false; 
-	
-}

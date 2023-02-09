@@ -8,7 +8,8 @@
 sh::Shape* Board::genNextShape() {
 	//int choice = 7; 
 	srand(time(NULL));
-	int choice = rand() % 8;
+	int choice = rand() % 8
+		;
 	std::cout << choice << std::endl;
 	switch (choice) {
 	case 1:
@@ -68,7 +69,7 @@ bool Board::checkPlaced()
 		checkTicks = 0;
 		return false; 
 	}
-	else if (checkTicks > 4000) {
+	else if (checkTicks > 50) {
 		checkTicks = 0;
 		return true;
 	}
@@ -126,6 +127,7 @@ void Board::Update()
 		currentShape = nextShape;
 		currentShape->initPos();
 		nextShape = genNextShape();
+	
 	}
 	currentShape->Update(grid);
 	//std::cout << currentShape->getPos().x << ", " << currentShape->getPos().y << std::endl;

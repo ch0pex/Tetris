@@ -10,6 +10,7 @@ void Game::loadTextures()
 	texMng.loadTexture("green",  "Assets/green.png");
 	texMng.loadTexture("purple", "Assets/purple.png");
 	texMng.loadTexture("cian",   "Assets/cian.png");
+	texMng.loadTexture("red", "Assets/red.png");
 
 }
 
@@ -23,6 +24,7 @@ void Game::gameLoop() {
 		gameState->Draw();                 // draw 
 		window.display(); 
 		// when set Frame limit not works 
+		window.setFramerateLimit(60);
 		// display
 	}
 }

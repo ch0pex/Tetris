@@ -6,7 +6,7 @@ void UserInterface::Update()
 
 void UserInterface::draw(sf::RenderWindow& window)
 {
-	for (size_t i = 0; i < 7; i++) {
+	for (size_t i = 0; i < 10; i++) {
 		window.draw(_contours[i], 2, sf::Lines); 
 	}
 	if (state == UiState::start) {
@@ -41,9 +41,12 @@ UserInterface::UserInterface() : _contours{
 		{sf::Vertex(sf::Vector2f(0,0)),     sf::Vertex(sf::Vector2f(500,0))   },
 		{sf::Vertex(sf::Vector2f(500,0)),   sf::Vertex(sf::Vector2f(500,1000))},
 		{sf::Vertex(sf::Vector2f(0,1000)),  sf::Vertex(sf::Vector2f(500,1000))},
-		{sf::Vertex(sf::Vector2f(500,100)), sf::Vertex(sf::Vector2f(650,100)) },
-		{sf::Vertex(sf::Vector2f(500,250)), sf::Vertex(sf::Vector2f(650,250)) },
-		{sf::Vertex(sf::Vector2f(650,100)), sf::Vertex(sf::Vector2f(650,250))}}
+		{sf::Vertex(sf::Vector2f(500,100)), sf::Vertex(sf::Vector2f(700,100)) },
+		{sf::Vertex(sf::Vector2f(500,300)), sf::Vertex(sf::Vector2f(700,300)) },
+		{sf::Vertex(sf::Vector2f(700,100)), sf::Vertex(sf::Vector2f(700,300)) },
+		{sf::Vertex(sf::Vector2f(500,300)), sf::Vertex(sf::Vector2f(650,300)) },
+		{sf::Vertex(sf::Vector2f(500,450)), sf::Vertex(sf::Vector2f(650,450)) },
+		{sf::Vertex(sf::Vector2f(650,300)), sf::Vertex(sf::Vector2f(650,450)) }}
 {	
 	state = UiState::start; 
 	_currentOption = 1; 
