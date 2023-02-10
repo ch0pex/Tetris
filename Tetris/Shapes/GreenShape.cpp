@@ -11,9 +11,7 @@ sh::GreenShape::GreenShape(sf::Texture* texture, sf::Vector2f position)
 	limits[1].push_back(450);
 	limits[1].push_back(950);
 
-
-
-	position = sf::Vector2f(600, 300);
+	position = sf::Vector2f(575, 150);
 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent;
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent;
@@ -26,6 +24,7 @@ sh::GreenShape::GreenShape(sf::Texture* texture, sf::Vector2f position)
 	comp2->offset = _offsets[rotation][3];
 
 	sf::Vector2f scale = sf::Vector2f(0.125f, 0.125f);
+
 	comp1->sprite.setScale(scale);
 	comp2->sprite.setScale(scale);
 	comp3->sprite.setScale(scale);

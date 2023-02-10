@@ -3,6 +3,7 @@
 
 sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shape()
 { 
+	position = sf::Vector2f(550, 150); 
 	
 	limits[0].push_back(0); 
 	limits[0].push_back(400);

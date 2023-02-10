@@ -26,19 +26,20 @@ namespace sh{
 		int rotation; 
 		std::map<int, std::vector<int>> limits;
 		std::vector<ShapeComponent*> components;
-		sf::Vector2f position; 
 		sf::Texture texture;
 		Shape(); 
 		
 		
 	public:
+		sf::Vector2f position; 
+		sf::Vector2f extraPos; 
 		bool placed;
 		std::map<sh::dir, bool> contact;
 		std::vector<sh::ShapeComponent*> getComponents();
 		sf::Vector2f getPos();
+		void setPos(sf::Vector2f pos); 
 
 		void draw(sf::RenderWindow& window);
-		void initPos(); 
 		void move(enum dir);
 
 

@@ -3,6 +3,7 @@
 
 sh::RedShape::RedShape(sf::Texture* texture, sf::Vector2f position)
 {
+	position = sf::Vector2f(550, 150);
 
 	limits[0].push_back(50);
 	limits[0].push_back(450);
@@ -13,7 +14,7 @@ sh::RedShape::RedShape(sf::Texture* texture, sf::Vector2f position)
 
 
 
-	position = sf::Vector2f(600, 300);
+	position = sf::Vector2f(575, 175);
 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent;
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent;

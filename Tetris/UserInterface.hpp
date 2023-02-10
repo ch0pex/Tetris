@@ -17,6 +17,8 @@ private:
 	sf::Text _title;
 	sf::Text _start;
 	sf::Text _exit;
+	sf::Text _next; 
+	sf::Text _saved; 
 	sf::Vertex _contours[10][2];
 	sf::Font _font;
 	bool _currentOption;

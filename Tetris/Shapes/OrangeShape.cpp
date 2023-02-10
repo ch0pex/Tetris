@@ -21,7 +21,7 @@ sh::OrangeShape::OrangeShape(sf::Texture* texture, sf::Vector2f position)
 	limits[3].push_back(1000);
 	 
 
-	position = sf::Vector2f(600, 300);
+	position = sf::Vector2f(525, 200);
 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent;
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent;

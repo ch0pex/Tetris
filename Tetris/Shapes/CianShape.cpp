@@ -10,7 +10,7 @@ sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 	limits[1].push_back(300);
 	limits[1].push_back(1000);
 
-	position = sf::Vector2f(600, 300);
+	position = sf::Vector2f(575, 100);
 
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent;
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent;
