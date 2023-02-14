@@ -86,6 +86,9 @@ sf::Vector2f sh::Shape::getPos()
 void sh::Shape::setPos(sf::Vector2f pos)
 {
 	position = pos; 
+	for (auto* component : components) {
+		component->sprite.setPosition(position + component->offset); 
+	}
 }
 
 

@@ -149,12 +149,17 @@ void Board::draw()
 
 void Board::swapShapes()
 {
+
+	for (auto* component : (extraShape != nullptr ? extraShape->getComponents() : nextShape->getComponents())) {
+		if (grid[((int)currentShape->position.x + (int)component->offset.x) / 50][((int)currentShape->position.y + (int)component->offset.y) / 50] != nullptr)
+			return;
+	}
 	if (extraShape == nullptr) {
 		extraShape = currentShape;
 		currentShape = nextShape;
-		currentShape->setPos(sf::Vector2f(250, 0));
-		nextShape = genNextShape();
+		currentShape->setPos(extraShape->getPos());
 		extraShape->position = sf::Vector2f(600, 800);
+		nextShape = genNextShape();
 	}
 	else {
 		sh::Shape* aux;
@@ -163,7 +168,10 @@ void Board::swapShapes()
 		aux->setPos(aux->extraPos);
 		currentShape = extraShape;
 		extraShape = aux;
-	}	
+	}
+	
+
+
 
 }
 
