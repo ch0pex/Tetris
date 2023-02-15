@@ -13,14 +13,13 @@ private:
 	sh::Shape* nextShape; 
 	sh::Shape* extraShape; 
 	std::vector<sh::Shape*> shapes;
-	int checkTicks; 
 
 	sh::Shape* genNextShape(); 
 	void shapeToGrid(sh::Shape* currentShape);
 	void gravity(); 
 	bool checkPlaced(); 
 	void deleteRow(int y);
-	sf::Vector2f resapawnPos(); 
+	int checkGameOver(); 
 
 public: 
 	sh::ShapeComponent* grid[10][20] = {nullptr};

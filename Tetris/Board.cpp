@@ -60,8 +60,8 @@ void Board::gravity() {
 
 bool Board::checkPlaced()
 {
- 
-	std::cout << checkTicks << std::endl; 
+	static int checkTicks = 0; 
+
 	if (!currentShape->contact[sh::dir::down]) {
 		checkTicks = 0;
 		return false; 
@@ -97,26 +97,18 @@ void Board::deleteRow(int y) {
 	}
 }
 
-sf::Vector2f Board::resapawnPos()
+int Board::checkGameOver()
 {
-
-	sf::Vector2f pos = sf::Vector2f(250, 0);
-	for (size_t row = 0; row < 5; row++) {
-		for (size_t cell = 0; cell < 10; cell++)
-		{
-			if (grid[cell][row] != nullptr) {
-				std::cout << "respawnPos" << std::endl; 
-				pos.y += 500; 
-				return pos; 
-			}
-		}
-	}
-	return pos; 
+	if (grid[5][0] != nullptr) return (1); 
+	if (grid[5][1] != nullptr) return (1);
+	if (grid[5][2] != nullptr) return (1);
+	return (0); 
 }
 
 
 int Board::Update()
 {
+
 	std::vector<int> rows;
 	
 	for (size_t y = 0; y < 20; y++)
@@ -135,19 +127,14 @@ int Board::Update()
 		for (int row : rows)
 			deleteRow(row);
 	}
-	if (checkPlaced()) {
-		if (currentShape->getPos().y < 0) {
-			return (1); // Game Over
-		}
-		else {
-			shapeToGrid(currentShape);
-			currentShape = nextShape;
-			currentShape->setPos(sf::Vector2f(250, 0));
-			nextShape = genNextShape();
-		}	
+	if (checkPlaced()) { 
+		shapeToGrid(currentShape);
+		currentShape = nextShape;
+		currentShape->setPos(sf::Vector2f(250,0));
+		nextShape = genNextShape();
 	}
 	currentShape->Update(grid);
-	return (0); 
+	return checkGameOver(); 
 	//std::cout << currentShape->getPos().x << ", " << currentShape->getPos().y << std::endl;
 }
 
@@ -171,7 +158,6 @@ void Board::draw()
 
 void Board::swapShapes()
 {
-
 	for (auto* component : (extraShape != nullptr ? extraShape->getComponents() : nextShape->getComponents())) {
 		if (grid[((int)currentShape->getPos().x + (int)component->offset.x) / 50][((int)currentShape->getPos().y + (int)component->offset.y) / 50] != nullptr)
 			return;
@@ -191,10 +177,6 @@ void Board::swapShapes()
 		currentShape = extraShape;
 		extraShape = aux;
 	}
-	
-
-
-
 }
 
 
@@ -206,7 +188,6 @@ Board::Board(Game* game) {
 	currentShape->setPos(sf::Vector2f(250, 0)); 
 	//thread with gravity func
 	new std::thread(&Board::gravity, this);
-	checkTicks = 0; 
 	//new std::thread(&Board::checkPlaced, this);
 
 }
