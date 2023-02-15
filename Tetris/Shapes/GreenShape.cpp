@@ -4,24 +4,25 @@
 sh::GreenShape::GreenShape(sf::Texture* texture, sf::Vector2f position)
 {
 
-	limits[0].push_back(50);
-	limits[0].push_back(450);
-	limits[0].push_back(950);
-	limits[1].push_back(50);
-	limits[1].push_back(450);
-	limits[1].push_back(950);
+	_limits[0].push_back(50);
+	_limits[0].push_back(450);
+	_limits[0].push_back(950);
+	_limits[1].push_back(50);
+	_limits[1].push_back(450);
+	_limits[1].push_back(950);
 
-	position = sf::Vector2f(575, 150);
+	_position = position;
+	extraPos = sf::Vector2f(575, 750); 
 
-	sh::ShapeComponent* comp1 = new sh::ShapeComponent;
-	sh::ShapeComponent* comp2 = new sh::ShapeComponent;
-	sh::ShapeComponent* comp3 = new sh::ShapeComponent;
-	sh::ShapeComponent* comp4 = new sh::ShapeComponent;
+	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
+	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
+	sh::ShapeComponent* comp3 = new sh::ShapeComponent();
+	sh::ShapeComponent* comp4 = new sh::ShapeComponent();
 
-	comp1->offset = _offsets[rotation][0];
-	comp3->offset = _offsets[rotation][1];
-	comp4->offset = _offsets[rotation][2];
-	comp2->offset = _offsets[rotation][3];
+	comp1->offset = _offsets[_rotation][0];
+	comp3->offset = _offsets[_rotation][1];
+	comp4->offset = _offsets[_rotation][2];
+	comp2->offset = _offsets[_rotation][3];
 
 	sf::Vector2f scale = sf::Vector2f(0.125f, 0.125f);
 
@@ -35,52 +36,51 @@ sh::GreenShape::GreenShape(sf::Texture* texture, sf::Vector2f position)
 	comp3->sprite.setTexture(*texture);
 	comp4->sprite.setTexture(*texture);
 
-	comp1->sprite.setPosition(comp1->offset + position);
-	comp2->sprite.setPosition(comp2->offset + position);
-	comp3->sprite.setPosition(comp3->offset + position);
-	comp4->sprite.setPosition(comp4->offset + position);
+	comp1->sprite.setPosition(comp1->offset + _position);
+	comp2->sprite.setPosition(comp2->offset + _position);
+	comp3->sprite.setPosition(comp3->offset + _position);
+	comp4->sprite.setPosition(comp4->offset + _position);
 
-	components.push_back(comp1);
-	components.push_back(comp2);
-	components.push_back(comp3);
-	components.push_back(comp4);
-	rotation = 0;
+	_components.push_back(comp1);
+	_components.push_back(comp2);
+	_components.push_back(comp3);
+	_components.push_back(comp4);
 }
 
 
 void sh::GreenShape::rotate(sh::ShapeComponent* grid[10][20])
 {
-	if (rotation == 1 && position.x == 450) return;
+	if (_rotation == 1 && _position.x == 450) return;
 
-	rotation = (rotation + 1) % 2;
-	for (sf::Vector2f offset : _offsets[rotation]) {
-		if (position.y + offset.y > limits[rotation].at(2)) {
-			rotation -= 1;
+	_rotation = (_rotation + 1) % 2;
+	for (sf::Vector2f offset : _offsets[_rotation]) {
+		if (_position.y + offset.y > _limits[_rotation].at(2)) {
+			_rotation -= 1;
 			return;
 		}
-		if (grid[((int)position.x + (int)offset.x) / 50][((int)position.y + (int)offset.y) / 50] != nullptr) {
-			rotation -= 1;
+		if (grid[((int)_position.x + (int)offset.x) / 50][((int)_position.y + (int)offset.y) / 50] != nullptr) {
+			_rotation -= 1;
 			return;
 		}
 
 	}
 
-	components[0]->offset = _offsets[rotation][0];
-	components[1]->offset = _offsets[rotation][1];
-	components[2]->offset = _offsets[rotation][2];
-	components[3]->offset = _offsets[rotation][3];
+	_components[0]->offset = _offsets[_rotation][0];
+	_components[1]->offset = _offsets[_rotation][1];
+	_components[2]->offset = _offsets[_rotation][2];
+	_components[3]->offset = _offsets[_rotation][3];
 
 
 
-	sf::Vector2f position0 = components[0]->offset + position;
-	sf::Vector2f position1 = components[1]->offset + position;
-	sf::Vector2f position2 = components[2]->offset + position;
-	sf::Vector2f position3 = components[3]->offset + position;
+	sf::Vector2f position0 = _components[0]->offset + _position;
+	sf::Vector2f position1 = _components[1]->offset + _position;
+	sf::Vector2f position2 = _components[2]->offset + _position;
+	sf::Vector2f position3 = _components[3]->offset + _position;
 
 
-	components[0]->sprite.setPosition(position0);
-	components[1]->sprite.setPosition(position1);
-	components[2]->sprite.setPosition(position2);
-	components[3]->sprite.setPosition(position3);
+	_components[0]->sprite.setPosition(position0);
+	_components[1]->sprite.setPosition(position1);
+	_components[2]->sprite.setPosition(position2);
+	_components[3]->sprite.setPosition(position3);
 
 }

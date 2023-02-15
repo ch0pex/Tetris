@@ -1,21 +1,22 @@
 #include "CianShape.hpp"
 
-sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
+sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position) : Shape()
 {
 
-	limits[0].push_back(0);
-	limits[0].push_back(450);
-	limits[0].push_back(900);
-	limits[1].push_back(0);
-	limits[1].push_back(300);
-	limits[1].push_back(1000);
+	_limits[0].push_back(0);
+	_limits[0].push_back(450);
+	_limits[0].push_back(900);
+	_limits[1].push_back(0);
+	_limits[1].push_back(300);
+	_limits[1].push_back(1000);
 
-	position = sf::Vector2f(575, 100);
+	_position = position;
+	extraPos = sf::Vector2f(575, 700);
 
-	sh::ShapeComponent* comp1 = new sh::ShapeComponent;
-	sh::ShapeComponent* comp2 = new sh::ShapeComponent;
-	sh::ShapeComponent* comp3 = new sh::ShapeComponent;
-	sh::ShapeComponent* comp4 = new sh::ShapeComponent;
+	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
+	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
+	sh::ShapeComponent* comp3 = new sh::ShapeComponent();
+	sh::ShapeComponent* comp4 = new sh::ShapeComponent();
 	
 	comp1->offset = sf::Vector2f(0, 0);
 	comp3->offset = sf::Vector2f(0, 50);
@@ -33,15 +34,15 @@ sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 	comp3->sprite.setTexture(*texture);
 	comp4->sprite.setTexture(*texture);
 
-	comp1->sprite.setPosition(comp1->offset + position);
-	comp2->sprite.setPosition(comp2->offset + position);
-	comp3->sprite.setPosition(comp3->offset + position);
-	comp4->sprite.setPosition(comp4->offset + position);
+	comp1->sprite.setPosition(comp1->offset + _position);
+	comp2->sprite.setPosition(comp2->offset + _position);
+	comp3->sprite.setPosition(comp3->offset + _position);
+	comp4->sprite.setPosition(comp4->offset + _position);
 	
-	components.push_back(comp1);
-	components.push_back(comp2);
-	components.push_back(comp3);
-	components.push_back(comp4);
+	_components.push_back(comp1);
+	_components.push_back(comp2);
+	_components.push_back(comp3);
+	_components.push_back(comp4);
 
 }
 
@@ -49,34 +50,34 @@ sh::CianShape::CianShape(sf::Texture* texture, sf::Vector2f position)
 
 void sh::CianShape::rotate(sh::ShapeComponent* grid[10][20]) 
 {
-	sf::Vector2f* offsets = rotation ? offsetsVer : offsetsHor;
+	sf::Vector2f* offsets = _rotation ? offsetsVer : offsetsHor;
 
-	for (sf::Vector2f offset : (rotation ? offsetsVer : offsetsHor)) {
-		if (position.x + offset.x < limits[rotation].at(0) || position.x + offset.x > limits[rotation].at(1))
+	for (sf::Vector2f offset : (_rotation ? offsetsVer : offsetsHor)) {
+		if (_position.x + offset.x < _limits[_rotation].at(0) || _position.x + offset.x > _limits[_rotation].at(1))
 			return;
-		if (position.y + offset.y > limits[rotation].at(2))
+		if (_position.y + offset.y > _limits[_rotation].at(2))
 			return;
-		if (grid[((int)position.x + (int)offset.x) / 50][((int)position.y + (int)offset.y) / 50] != nullptr)
+		if (grid[((int)_position.x + (int)offset.x) / 50][((int)_position.y + (int)offset.y) / 50] != nullptr)
 			return;
 	}
 
 	
 
-	components[0]->offset = offsets[0]; 
-	components[1]->offset = offsets[1]; 
-	components[2]->offset = offsets[2]; 
-	components[3]->offset = offsets[3]; 
+	_components[0]->offset = offsets[0]; 
+	_components[1]->offset = offsets[1]; 
+	_components[2]->offset = offsets[2]; 
+	_components[3]->offset = offsets[3]; 
 	
 
-	rotation = !rotation; 
-	sf::Vector2f position0 = components[0]->offset + position;
-	sf::Vector2f position1 = components[1]->offset + position;
-	sf::Vector2f position2 = components[2]->offset + position;
-	sf::Vector2f position3 = components[3]->offset + position;
+	_rotation = 1 - _rotation; 
+	sf::Vector2f position0 = _components[0]->offset + _position;
+	sf::Vector2f position1 = _components[1]->offset + _position;
+	sf::Vector2f position2 = _components[2]->offset + _position;
+	sf::Vector2f position3 = _components[3]->offset + _position;
 
 	
-	components[0]->sprite.setPosition(position0);
-	components[1]->sprite.setPosition(position1);
-	components[2]->sprite.setPosition(position2);
-	components[3]->sprite.setPosition(position3);
+	_components[0]->sprite.setPosition(position0);
+	_components[1]->sprite.setPosition(position1);
+	_components[2]->sprite.setPosition(position2);
+	_components[3]->sprite.setPosition(position3);
 }

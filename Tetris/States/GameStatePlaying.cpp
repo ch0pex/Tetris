@@ -1,5 +1,5 @@
 #include "GameStatePlaying.hpp"
-
+#include "GameStateStart.hpp"
 #include "../TextureManager.hpp"
 
 void GameStatePlaying::Draw()
@@ -41,7 +41,10 @@ void GameStatePlaying::HandleInput()
 
 void GameStatePlaying::Update()
 {
-	game->board->Update(); 
+	if (game->board->Update()) {
+		game->Ui->state = UiState::start; 
+		game->gameState = new GameStateStart(game); 
+	};
 	game->Ui->Update(); 
 }
 

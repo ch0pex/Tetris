@@ -11,19 +11,19 @@ sh::Shape* Board::genNextShape() {
 	int choice = rand() % 8;
 	switch (choice) {
 	case 1:
-		return new sh::CianShape(game->texMng.getTextureRef("cian"), sf::Vector2f(550, 150));
+		return new sh::CianShape(game->texMng.getTextureRef("cian"), sf::Vector2f(575, 100));
 	case 2:
 		return new sh::YellowShape(game->texMng.getTextureRef("yellow"), sf::Vector2f(550, 150));
 	case 3: 
-		return new sh::PurpleShape(game->texMng.getTextureRef("purple"), sf::Vector2f(550, 150)); 
+		return new sh::PurpleShape(game->texMng.getTextureRef("purple"), sf::Vector2f(550, 175));
 	case 4: 
-		return new sh::OrangeShape(game->texMng.getTextureRef("orange"), sf::Vector2f(550, 150));
+		return new sh::OrangeShape(game->texMng.getTextureRef("orange"), sf::Vector2f(525, 200));
 	case 5: 
-		return  new sh::BlueShape(game->texMng.getTextureRef("blue"), sf::Vector2f(550, 150)); 
+		return  new sh::BlueShape(game->texMng.getTextureRef("blue"), sf::Vector2f(625, 200));
 	case 6: 
-		return new sh::GreenShape(game->texMng.getTextureRef("green"), sf::Vector2f(550, 150));
+		return new sh::GreenShape(game->texMng.getTextureRef("green"), sf::Vector2f(575, 150));
 	case 7: 
-		return new sh::RedShape(game->texMng.getTextureRef("red"), sf::Vector2f(559, 150)); 
+		return new sh::RedShape(game->texMng.getTextureRef("red"), sf::Vector2f(575, 175));
 	}
 	return new sh::CianShape(game->texMng.getTextureRef("cian"), sf::Vector2f(550, 150));
 
@@ -97,8 +97,25 @@ void Board::deleteRow(int y) {
 	}
 }
 
+sf::Vector2f Board::resapawnPos()
+{
 
-void Board::Update()
+	sf::Vector2f pos = sf::Vector2f(250, 0);
+	for (size_t row = 0; row < 5; row++) {
+		for (size_t cell = 0; cell < 10; cell++)
+		{
+			if (grid[cell][row] != nullptr) {
+				std::cout << "respawnPos" << std::endl; 
+				pos.y += 500; 
+				return pos; 
+			}
+		}
+	}
+	return pos; 
+}
+
+
+int Board::Update()
 {
 	std::vector<int> rows;
 	
@@ -119,13 +136,18 @@ void Board::Update()
 			deleteRow(row);
 	}
 	if (checkPlaced()) {
-		shapeToGrid(currentShape);
-		currentShape = nextShape;
-		currentShape->setPos(sf::Vector2f(250, 0));
-		nextShape = genNextShape();
-	
+		if (currentShape->getPos().y < 0) {
+			return (1); // Game Over
+		}
+		else {
+			shapeToGrid(currentShape);
+			currentShape = nextShape;
+			currentShape->setPos(sf::Vector2f(250, 0));
+			nextShape = genNextShape();
+		}	
 	}
 	currentShape->Update(grid);
+	return (0); 
 	//std::cout << currentShape->getPos().x << ", " << currentShape->getPos().y << std::endl;
 }
 
@@ -151,14 +173,14 @@ void Board::swapShapes()
 {
 
 	for (auto* component : (extraShape != nullptr ? extraShape->getComponents() : nextShape->getComponents())) {
-		if (grid[((int)currentShape->position.x + (int)component->offset.x) / 50][((int)currentShape->position.y + (int)component->offset.y) / 50] != nullptr)
+		if (grid[((int)currentShape->getPos().x + (int)component->offset.x) / 50][((int)currentShape->getPos().y + (int)component->offset.y) / 50] != nullptr)
 			return;
 	}
 	if (extraShape == nullptr) {
 		extraShape = currentShape;
 		currentShape = nextShape;
 		currentShape->setPos(extraShape->getPos());
-		extraShape->position = sf::Vector2f(600, 800);
+		extraShape->setPos(extraShape->extraPos);
 		nextShape = genNextShape();
 	}
 	else {

@@ -52,9 +52,7 @@ UserInterface::UserInterface() : _contours{
 		{sf::Vertex(sf::Vector2f(500,100)), sf::Vertex(sf::Vector2f(700,100)) },
 		{sf::Vertex(sf::Vector2f(500,300)), sf::Vertex(sf::Vector2f(700,300)) },
 		{sf::Vertex(sf::Vector2f(700,100)), sf::Vertex(sf::Vector2f(700,300)) },
-		{sf::Vertex(sf::Vector2f(500,700)), sf::Vertex(sf::Vector2f(700,700)) },
-		{sf::Vertex(sf::Vector2f(500,900)), sf::Vertex(sf::Vector2f(700,900)) },
-		{sf::Vertex(sf::Vector2f(700,700)), sf::Vertex(sf::Vector2f(700,900)) }}
+		{sf::Vertex(sf::Vector2f(500,700)), sf::Vertex(sf::Vector2f(900,700)) }}
 {	
 	state = UiState::start; 
 	_currentOption = 1; 

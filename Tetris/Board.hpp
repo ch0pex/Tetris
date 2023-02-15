@@ -20,11 +20,12 @@ private:
 	void gravity(); 
 	bool checkPlaced(); 
 	void deleteRow(int y);
+	sf::Vector2f resapawnPos(); 
 
 public: 
 	sh::ShapeComponent* grid[10][20] = {nullptr};
 	Board(Game* game); 
-	void Update(); 
+	int Update(); 
 	void draw();
 	void swapShapes(); 
 

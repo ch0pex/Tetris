@@ -3,10 +3,11 @@
 
 sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shape()
 { 
-	position = sf::Vector2f(550, 150); 
+	_position = position; 
+	extraPos = sf::Vector2f(525, 725); 
 	
-	limits[0].push_back(0); 
-	limits[0].push_back(400);
+	_limits[0].push_back(0); 
+	_limits[0].push_back(400);
 	sh::ShapeComponent* comp1 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp2 = new sh::ShapeComponent();
 	sh::ShapeComponent* comp3 = new sh::ShapeComponent();
@@ -28,15 +29,15 @@ sh::YellowShape::YellowShape(sf::Texture* texture, sf::Vector2f position) : Shap
 	comp3->sprite.setTexture(*texture); 
 	comp4->sprite.setTexture(*texture); 
 
-	comp1->sprite.setPosition(comp1->offset + position);
-	comp2->sprite.setPosition(comp2->offset + position);
-	comp3->sprite.setPosition(comp3->offset + position);
-	comp4->sprite.setPosition(comp4->offset + position);
+	comp1->sprite.setPosition(comp1->offset + _position);
+	comp2->sprite.setPosition(comp2->offset + _position);
+	comp3->sprite.setPosition(comp3->offset + _position);
+	comp4->sprite.setPosition(comp4->offset + _position);
 
-	components.push_back(comp1); 
-	components.push_back(comp2);
-	components.push_back(comp3); 
-	components.push_back(comp4); 
+	_components.push_back(comp1); 
+	_components.push_back(comp2);
+	_components.push_back(comp3); 
+	_components.push_back(comp4); 
 
 }
 

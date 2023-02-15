@@ -19,7 +19,7 @@ private:
 	sf::Text _exit;
 	sf::Text _next; 
 	sf::Text _saved; 
-	sf::Vertex _contours[10][2];
+	sf::Vertex _contours[8][2];
 	sf::Font _font;
 	bool _currentOption;
 
