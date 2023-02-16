@@ -45,14 +45,18 @@ void Board::shapeToGrid(sh::Shape* currentShape)
 
 
 void Board::gravity() {
-	int factor = 700000 - (10000 + _score);
-	std::chrono::microseconds time(factor > 50000 ? factor : 50000 );
+
+
 	std::chrono::microseconds maxSpeed(50*1000);
 	int x = 0;
 	if (currentShape == nullptr) return; 
 	while (1) {
 		if(!currentShape->contact[sh::dir::down])
 			currentShape->move(sh::dir::down); 
+		int factor = 500000 - _score * 100;
+		std::chrono::microseconds time(factor > 5000 ? factor : 50000);
+		std::cout << _score << std::endl;
+		std::cout << factor << std::endl;
 		std::this_thread::sleep_for(time);
 	}
 
