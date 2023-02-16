@@ -9,10 +9,9 @@ class GameStatePlaying : public GameState
 {
 
 public: 
-	virtual void Draw();
-	virtual void HandleInput();
-	virtual void Update();
-	//virtual void fixedUpdate(); 
+	void Draw() override;
+	void HandleInput() override;
+	void Update() override;
 
 	GameStatePlaying(Game* game);
 };

@@ -1,7 +1,8 @@
 #include "UserInterface.hpp"
 
-void UserInterface::Update()
+void UserInterface::Update(int& score)
 {
+	_score.setString(std::to_string(score));
 }
 
 void UserInterface::draw(sf::RenderWindow& window)
@@ -15,6 +16,11 @@ void UserInterface::draw(sf::RenderWindow& window)
 	else {
 		window.draw(_next);
 		window.draw(_saved);
+		window.draw(_score);
+	}
+
+	if (state == UiState::gameOver) {
+		window.draw(_gameOver);
 	}
 
 	for (size_t i = 0; i < 10; i++) {
@@ -85,4 +91,17 @@ UserInterface::UserInterface() : _contours{
 	_exit.setFont(_font);
 	_exit.setString("Exit");
 	_exit.setPosition(sf::Vector2f(615, 560));
+
+	_gameOver.setCharacterSize(60);
+	_gameOver.setFont(_font);
+	_gameOver.setString("GameOver");
+	_gameOver.setPosition(sf::Vector2f(300, 400));
+
+	_score.setCharacterSize(30);
+	_score.setFont(_font);
+	_score.setFillColor(sf::Color::Yellow);
+	_score.setString("0");
+	_score.setPosition(sf::Vector2f(605, 510));
+
+
 } 

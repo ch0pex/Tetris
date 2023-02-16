@@ -45,8 +45,8 @@ void Board::shapeToGrid(sh::Shape* currentShape)
 
 
 void Board::gravity() {
-	std::chrono::microseconds time(700*1000);
-	std::chrono::microseconds speedUp(300);
+	int factor = 700000 - (10000 + _score);
+	std::chrono::microseconds time(factor > 50000 ? factor : 50000 );
 	std::chrono::microseconds maxSpeed(50*1000);
 	int x = 0;
 	if (currentShape == nullptr) return; 
@@ -81,6 +81,7 @@ bool Board::checkPlaced()
 
 
 void Board::deleteRow(int y) {
+	_score += 100;
 	for (size_t x = 0; x < 10; x++)
 	{
 		grid[x][y] = nullptr;
@@ -99,10 +100,10 @@ void Board::deleteRow(int y) {
 
 int Board::checkGameOver()
 {
-	if (grid[5][0] != nullptr) return (1); 
-	if (grid[5][1] != nullptr) return (1);
-	if (grid[5][2] != nullptr) return (1);
-	return (0); 
+	if (grid[5][0] != nullptr) return (-1); 
+	if (grid[5][1] != nullptr) return (-1);
+	if (grid[5][2] != nullptr) return (-1);
+	return _score; 
 }
 
 
@@ -129,9 +130,9 @@ int Board::Update()
 	}
 	if (checkPlaced()) { 
 		shapeToGrid(currentShape);
-		currentShape = nextShape;
+		currentShape = _nextShape;
 		currentShape->setPos(sf::Vector2f(250,0));
-		nextShape = genNextShape();
+		_nextShape = genNextShape();
 	}
 	currentShape->Update(grid);
 	return checkGameOver(); 
@@ -148,42 +149,43 @@ void Board::draw()
 		}	 
 	}
 	currentShape->draw(game->window);
-	nextShape->draw(game->window);
-	if (extraShape) {
-		extraShape->setPos(sf::Vector2f(600, 800)); 
-		std::cout << extraShape->getPos().x << ", " << extraShape->getPos().y << std::endl;
-		extraShape->draw(game->window);
+	_nextShape->draw(game->window);
+	if (_extraShape) {
+		_extraShape->setPos(sf::Vector2f(600, 800)); 
+		std::cout << _extraShape->getPos().x << ", " << _extraShape->getPos().y << std::endl;
+		_extraShape->draw(game->window);
 	}
 }
 
 void Board::swapShapes()
 {
-	for (auto* component : (extraShape != nullptr ? extraShape->getComponents() : nextShape->getComponents())) {
+	for (auto* component : (_extraShape != nullptr ? _extraShape->getComponents() : _nextShape->getComponents())) {
 		if (grid[((int)currentShape->getPos().x + (int)component->offset.x) / 50][((int)currentShape->getPos().y + (int)component->offset.y) / 50] != nullptr)
 			return;
 	}
-	if (extraShape == nullptr) {
-		extraShape = currentShape;
-		currentShape = nextShape;
-		currentShape->setPos(extraShape->getPos());
-		extraShape->setPos(extraShape->extraPos);
-		nextShape = genNextShape();
+	if (_extraShape == nullptr) {
+		_extraShape = currentShape;
+		currentShape = _nextShape;
+		currentShape->setPos(_extraShape->getPos());
+		_extraShape->setPos(_extraShape->extraPos);
+		_nextShape = genNextShape();
 	}
 	else {
 		sh::Shape* aux;
-		extraShape->setPos(currentShape->getPos());
+		_extraShape->setPos(currentShape->getPos());
 		aux = currentShape;
 		aux->setPos(aux->extraPos);
-		currentShape = extraShape;
-		extraShape = aux;
+		currentShape = _extraShape;
+		_extraShape = aux;
 	}
 }
 
 
 Board::Board(Game* game) {
-	extraShape = nullptr; 
+	_extraShape = nullptr; 
+	_score = 0;
 	this->game = game; 
- 	nextShape = genNextShape(); 
+ 	_nextShape = genNextShape(); 
 	currentShape = genNextShape(); 
 	currentShape->setPos(sf::Vector2f(250, 0)); 
 	//thread with gravity func

@@ -19,6 +19,8 @@ private:
 	sf::Text _exit;
 	sf::Text _next; 
 	sf::Text _saved; 
+	sf::Text _score;
+	sf::Text _gameOver;
 	sf::Vertex _contours[8][2];
 	sf::Font _font;
 	bool _currentOption;
@@ -31,7 +33,7 @@ public:
 	void setOption(bool option);
 	bool getOption(); 
 
-	void Update(); 
+	void Update(int &score); 
 	void draw(sf::RenderWindow& window);
 	UserInterface(); 
 };

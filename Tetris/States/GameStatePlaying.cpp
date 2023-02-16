@@ -1,5 +1,5 @@
 #include "GameStatePlaying.hpp"
-#include "GameStateStart.hpp"
+#include "GameStateOver.hpp"
 #include "../TextureManager.hpp"
 
 void GameStatePlaying::Draw()
@@ -41,11 +41,13 @@ void GameStatePlaying::HandleInput()
 
 void GameStatePlaying::Update()
 {
-	if (game->board->Update()) {
-		game->Ui->state = UiState::start; 
-		game->gameState = new GameStateStart(game); 
-	};
-	game->Ui->Update(); 
+	int score = game->board->Update();
+	if (score == -1) {
+		game->Ui->state = UiState::gameOver; 
+		game->gameState = new GameStateOver(game); 
+	}
+	else
+		game->Ui->Update(score); 
 }
 
 

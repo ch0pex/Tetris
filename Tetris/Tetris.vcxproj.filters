@@ -60,6 +60,9 @@
     <ClCompile Include="Shapes\RedShape.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="States\GameStateOver.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.hpp">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Shapes\RedShape.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="States\GameStateOver.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

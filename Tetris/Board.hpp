@@ -10,9 +10,10 @@ class Board
 private: 
 	Game* game;
 	//sh::Shape* storedShape; 
-	sh::Shape* nextShape; 
-	sh::Shape* extraShape; 
-	std::vector<sh::Shape*> shapes;
+	sh::Shape* _nextShape; 
+	sh::Shape* _extraShape; 
+	std::vector<sh::Shape*> _shapes;
+	int _score;
 
 	sh::Shape* genNextShape(); 
 	void shapeToGrid(sh::Shape* currentShape);

@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="States\GameStateOver.cpp" />
     <ClCompile Include="Shapes\RedShape.cpp" />
     <ClCompile Include="Shapes\GreenShape.cpp" />
     <ClCompile Include="Shapes\BlueShape.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="Shapes\YellowShape.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="States\GameStateOver.hpp" />
     <ClInclude Include="Shapes\RedShape.hpp" />
     <ClInclude Include="Shapes\GreenShape.hpp" />
     <ClInclude Include="Shapes\BlueShape.hpp" />
